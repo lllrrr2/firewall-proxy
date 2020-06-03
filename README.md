@@ -4,7 +4,7 @@ This project mission is to provide tutorials to let you across the firewall in y
 But whether works in your country, you need to try it one by one    
 The main project I'm using are these below:     
 - Shadowsocks:https://github.com/shadowsocks/shadowsocks/tree/master    
-- V2ray:https://github.com/v2ray/v2ray-core     
+- V2ray:https://github.com/v2fly/v2ray-core     
 - Trojan:https://github.com/trojan-gfw/trojan     
 - Trojan-GO:https://github.com/p4gefau1t/trojan-go
 # Content
