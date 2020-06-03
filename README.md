@@ -1,7 +1,7 @@
 # 关于
 本项目旨在提供几个主流的代理软件搭建教程，使用到的项目如下：    
 - Shadowsocks:https://github.com/shadowsocks/shadowsocks/tree/master    
-- V2ray:https://github.com/v2ray/v2ray-core     
+- V2ray:https://github.com/v2fly/v2ray-core     
 - Trojan:https://github.com/trojan-gfw/trojan     
 - Trojan-GO:https://github.com/p4gefau1t/trojan-go  
 # 内容
