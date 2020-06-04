@@ -12,7 +12,7 @@ apt install -y unzip wget
 ```
 - 2. download package   
 ```bash
-wget https://github.com/charlieethan/firewall-proxy/releases/download/V0.5.1/trojan-go.zip
+wget https://github.com/charlieethan/firewall-proxy/releases/download/V0.6.0/trojan-go.zip
 chmod +x trojan-go.zip
 unzip trojan-go.zip
 ```
