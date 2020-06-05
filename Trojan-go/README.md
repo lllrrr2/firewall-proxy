@@ -75,9 +75,13 @@ vim server.json
 apt update
 apt install nginx
 ```
-- 6. modify config files（please modify **yourdomain.com** to your domain）
+- 6. modify config files（please modify **your_domain.com** to your domain）
 ```bash
 rm /etc/nginx/sites-enabled/default
+nano /etc/nginx/sites-available/your_domain.com
+```
+Enter `Ctrl+X` to leave and then use these commands:
+```bash
 ln -s /etc/nginx/sites-available/your_domain.com /etc/nginx/sites-enabled/
 vim /etc/nginx/conf.d/about.conf
 ```
