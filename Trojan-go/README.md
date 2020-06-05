@@ -85,6 +85,10 @@ apt install nginx
 - 6. 移除默认（ **your_domain.com 改为你的域名**）
 ```bash
 rm /etc/nginx/sites-enabled/default
+nano /etc/nginx/sites-available/your_domain.com
+```
+使用 `Ctrl+X` 退出并复制以下命令：
+```bash
 ln -s /etc/nginx/sites-available/your_domain.com /etc/nginx/sites-enabled/
 vim /etc/nginx/conf.d/about.conf
 ```
