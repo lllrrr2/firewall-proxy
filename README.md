@@ -2,11 +2,6 @@ English Version | [香港繁體](https://github.com/charlieethan/firewall-proxy/
 # About
 This project mission is to provide tutorials to let you across the firewall in your country, every method is still working in China,   
 But whether works in your country, you need to try it one by one    
-The main project I'm using are these below:     
-- Shadowsocks:https://github.com/shadowsocks/shadowsocks/tree/master    
-- V2ray:https://github.com/v2fly/v2ray-core     
-- Trojan:https://github.com/trojan-gfw/trojan     
-- Trojan-GO:https://github.com/p4gefau1t/trojan-go
 # Content
 - Shadowsocks+Obfuscation（DO NOT Need a domain）：  
 https://github.com/charlieethan/firewall-proxy/tree/English/shadowsocks    
@@ -25,3 +20,17 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS       
 ⭐⭐ Shadowsocks+Obfuscation    
+# Credit      
+- [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
+- [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
+- [Trojan](https://github.com/trojan-gfw/trojan)       
+- [Trojan-GO](https://github.com/p4gefau1t/trojan-go)      
+- [tls-shunt-proxy](https://github.com/liberal-boy/tls-shunt-proxy)      
+- [nginx-openssl-chacha-naxsi](https://github.com/stylersnico/nginx-openssl-chacha-naxsi)    
+- [across](https://github.com/teddysun/across)     
+- [Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5)     
+- [v2rayN](https://github.com/2dust/v2rayN)      
+- [v2rayNG](https://github.com/2dust/v2rayNG)     
+- [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
+- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
+- [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
