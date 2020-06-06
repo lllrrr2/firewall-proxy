@@ -7,6 +7,7 @@ Debian 9 && Ubuntu 16~18
 - 安装基础工具  
 ```bash
 apt-get update && apt-get -y install socat wget screen
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装证书生成脚本  
 ```bash
@@ -16,35 +17,30 @@ source ~/.bashrc
 - 安装证书  (**your_domain.com** 改为你的域名）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/v2ray.crt --key-file /etc/v2ray/v2ray.key --ecc
-```
-- 安装V2ray 
-```bash 
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-bash <(curl -L -s https://install.direct/go.sh)
+mkdir /key
+acme.sh --installcert -d your_domain.com --fullchain-file /key/server.crt --key-file /key/server.key --ecc
 ```
 - 安装密码套件  （如果中途失去连接可用 **screen -R openssl** 恢复当前窗口，脚本中的选项 **全部填 n**）
 ```bash
 screen -S openssl        
 cd /tmp && wget --no-check-certificate https://raw.githubusercontent.com/stylersnico/nginx-openssl-chacha/master/build.sh && sh build.sh
 ```
+- 安装 Docker && V2ray  
+```bash
+wget -qO- get.docker.com | bash
+docker pull teddysun/v2ray
+```
 - 编辑 v2ray 配置 
 ```bash
+mkdir /etc/v2ray
 vim /etc/v2ray/config.json
 ```
 - 复制配置  
 ```bash
 {
-  "log": {
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log",
-    "loglevel": "warning"
-  },
   "inbounds": [
     {
       "port": 10000,
-      "listen":"127.0.0.1",
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -119,13 +115,21 @@ server {
 - 启动服务  
 ```bash 
 nginx -s reload
-service v2ray restart
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 ```
 - 开启 BBR 加速 
 ```bash
 bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
+```
+# 更新 V2ray
+```bash
+docker stop v2ray
+docker rm v2ray
+docker rmi teddysun/v2ray
+docker pull teddysun/v2ray
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 ```
 # 客户端配置
 
