@@ -30,13 +30,21 @@ EOF
 ```
 - Start Service （Please modify "9000" to your set port before）
 ```
-docker run -d -p 9000:9000 -p 9000:9000/udp --name ss-libev --restart=always -v /etc/shadowsocks-libev:/etc/shadowsocks-libev teddysun/shadowsocks-libev
+docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```
 bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
+```
+# For new version Update:
+```bash
+docker stop ss-libev
+docker rm ss-libev
+docker rmi teddysun/shadowsocks-libev
+docker pull teddysun/shadowsocks-libev
+docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 # Client
 - Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/shadowsocks/simple-obfs-android/releases)    
