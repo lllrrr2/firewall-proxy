@@ -4,26 +4,27 @@
 ## Build Environment	
 Debian 9 && Ubuntu 16~18
 ## Content 
-- 1. install basic tools   
+- install basic tools   
 ```bash
-sudo -i
-apt-get upgrade
-apt install -y unzip wget
+apt update && apt install -y wget
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
-- 2. download package   
+- install script	 
 ```bash
-wget https://github.com/charlieethan/firewall-proxy/releases/download/V0.6.0/trojan-go.zip
-chmod +x trojan-go.zip
-unzip trojan-go.zip
+wget -qO- get.acme.sh | bash 
+source ~/.bashrc
 ```
-- 3. request SSL（Please type your Domain & E-mail Address with Tip）  
+- request SSL certificate (modify **your_domain.com** to your domain）  
 ```bash
-rm -rf trojan-go.zip
-sudo ./trojan-go -autocert request
+acme.sh --issue --standalone -d your_domain.com -k ec-256
+mkdir /etc/trojan-go
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.crt --key-file /etc/trojan-go/server.key --ecc
 ```
-- 4. modify config files     
+- install Docker && Trojan    
 ```bash
-vim server.json
+wget -qO- get.docker.com | bash
+docker pull teddysun/trojan-go
+vim /etc/trojan-go/config.json
 ```
 > config a ：DO NOT Need to use CDN  
 ```bash
@@ -37,8 +38,8 @@ vim server.json
         "password0"  #modify to your password
     ],
     "ssl": {
-        "cert": "/root/server.crt",
-        "key": "/root/server.key",
+        "cert": "/etc/trojan-go/server.crt",
+        "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
     }
@@ -56,8 +57,8 @@ vim server.json
         "password0"  #modify to your password
     ],
     "ssl": {
-        "cert": "/root/server.crt",
-        "key": "/root/server.key",
+        "cert": "/etc/trojan-go/server.crt",
+        "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
     },
@@ -66,22 +67,17 @@ vim server.json
         "path": "/your_path",    #modify a path
         "hostname": "your_domain.com",   #modify to your domain
         "obfuscation_password": "password1",   #modify to another password
-        "double_tls": true
+        "double_tls": false
     }
 }
 ```
-- 5. install Nginx  
+- install Nginx  
 ```bash
-apt update
-apt install -y nginx
+apt update && apt install -y nginx
 ```
-- 6. modify config files（please modify **your_domain.com** to your domain）
+- modify config files（please modify **your_domain.com** to your domain）
 ```bash
 rm /etc/nginx/sites-enabled/default
-nano /etc/nginx/sites-available/your_domain.com
-```
-Enter `Ctrl+X` to leave and then use these commands:
-```bash
 ln -s /etc/nginx/sites-available/your_domain.com /etc/nginx/sites-enabled/
 vim /etc/nginx/conf.d/about.conf
 ```
@@ -93,13 +89,9 @@ server {
     location / {
         proxy_pass https://your_proxy.com;   #modify to any website URL you want to disguise  
         proxy_redirect     off;
-        proxy_connect_timeout      75; 
-        proxy_send_timeout         90; 
-        proxy_read_timeout         90; 
-        proxy_buffer_size          4k; 
-        proxy_buffers              4 32k; 
-        proxy_busy_buffers_size    64k; 
-        proxy_temp_file_write_size 64k; 
+        proxy_buffer_size          64k; 
+        proxy_buffers              32 32k; 
+        proxy_busy_buffers_size    128k;  
     }
 
 }
@@ -122,16 +114,24 @@ server {
 	return 400;
 }
 ```
-- 8. Start service  
+- Start service  
 ```bash
-nohup ./trojan-go -config server.json >trojan-go.log 2<&1 &
 nginx -s reload
+docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
 ```
-- 9. Start BBR Accelerate (A solotion to decrease network delay from Google) ： 
+- Start BBR Accelerate (A solotion to decrease network delay from Google) ： 
 ```bash
 bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
+```
+## For new version Update:
+```bash
+docker stop trojan-go
+docker rm trojan-go
+docker rmi teddysun/trojan-go
+docker pull teddysun/trojan-go
+docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
 ```
 ## Client 
 Windows 7.0+ ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
