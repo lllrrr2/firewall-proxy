@@ -20,7 +20,8 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS       
 ⭐⭐ Shadowsocks+Obfuscation    
-# Credit      
+# Credit     
+- [@teddysun-Dockerhub](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
 - [Trojan](https://github.com/trojan-gfw/trojan)       
