@@ -6,7 +6,8 @@ Debian 9 && Ubuntu 16~18
 # Content
 - install basic tools
 ```bash
-apt-get update && apt-get -y install socat wget screen
+apt-get update && apt-get -y install socat wget screen    
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script  
 ```bash
@@ -16,13 +17,8 @@ source ~/.bashrc
 - request SSL certificate (modify **your_domain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/v2ray.crt --key-file /etc/v2ray/v2ray.key --ecc
-```
-- install V2ray 
-```bash 
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-bash <(curl -L -s https://install.direct/go.sh)
+mkdir /key
+acme.sh --installcert -d your_domain.com --fullchain-file /key/server.crt --key-file /key/server.key --ecc
 ```
 - install basic dependence    
 （If you lose connection, you can use **screen -R openssl** to recover，All choice in script please select **n**）
@@ -30,22 +26,22 @@ bash <(curl -L -s https://install.direct/go.sh)
 screen -S openssl        
 cd /tmp && wget --no-check-certificate https://raw.githubusercontent.com/stylersnico/nginx-openssl-chacha/master/build.sh && sh build.sh
 ```
+- Install Docker && V2ray
+```bash
+wget -qO- get.docker.com | bash
+docker pull teddysun/v2ray
+```
 - modify config file 
 ```bash
+mkdir /etc/v2ray
 vim /etc/v2ray/config.json
 ```
 - copy your config  
 ```bash
 {
-  "log": {
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log",
-    "loglevel": "warning"
-  },
   "inbounds": [
     {
       "port": 10000,
-      "listen":"127.0.0.1",
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -120,13 +116,21 @@ server {
 - Start Service  
 ```bash 
 nginx -s reload
-service v2ray restart
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```bash
 bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
+```
+# For new version Update:
+```bash
+docker stop v2ray
+docker rm v2ray
+docker rmi teddysun/v2ray
+docker pull teddysun/v2ray
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 ```
 # Client
 Windows 7+: [Download](https://github.com/2dust/v2rayN/releases)    
