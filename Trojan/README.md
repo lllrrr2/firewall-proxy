@@ -121,9 +121,16 @@ sudo sysctl -p
 - Start Service     
 ```bash
 nginx -s reload
-docker run -d --name trojan --restart always --net host -v /etc/trojan:/etc/trojan teddysun/trojan
+docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
 ```
-
+# For new version Update:
+```bash
+docker stop trojan
+docker rm trojan
+docker rmi teddysun/trojan
+docker pull teddysun/trojan
+docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
+```
 # Client
 Android 6.0+ ：[Download](https://github.com/trojan-gfw/igniter/releases)                  
 
