@@ -122,7 +122,14 @@ sudo sysctl -p
 nginx -s reload
 docker run -d --name trojan --restart always --net host -v /etc/trojan:/etc/trojan teddysun/trojan
 ```
-
+# 升级 Trojan 内核
+```bash
+docker stop trojan
+docker rm trojan
+docker rmi teddysun/trojan
+docker pull teddysun/trojan
+docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
+```
 # 客户端
 安卓系统 ：[点击下载](https://github.com/trojan-gfw/igniter/releases)          
 > 配置如下： **地址**填你的域名，**端口**填 443 ，**密码**填你刚才设置的密码，其他选项无需更改        
