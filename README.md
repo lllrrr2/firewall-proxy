@@ -1,5 +1,6 @@
 # 关于
-本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验
+本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
+所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
 - Shadowsocks+OBFS（无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/shadowsocks  
 - V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/V2ray     
