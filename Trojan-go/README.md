@@ -73,7 +73,7 @@ vim server.json
 - 5. install Nginx  
 ```bash
 apt update
-apt install nginx
+apt install -y nginx
 ```
 - 6. modify config files（please modify **your_domain.com** to your domain）
 ```bash
