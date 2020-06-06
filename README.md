@@ -1,7 +1,8 @@
 English Version | [香港繁體](https://github.com/charlieethan/firewall-proxy/tree/traditional) | [大陆简体](https://github.com/charlieethan/firewall-proxy/tree/master)
 # About
 This project mission is to provide tutorials to let you across the firewall in your country, every method is still working in China,   
-But whether works in your country, you need to try it one by one    
+But whether works in your country, you need to try it one by one     
+All the project rely on [Dockerhub](https://hub.docker.com/),you can learn something more about it    
 # Content
 - Shadowsocks+Obfuscation（DO NOT Need a domain）：  
 https://github.com/charlieethan/firewall-proxy/tree/English/shadowsocks    
