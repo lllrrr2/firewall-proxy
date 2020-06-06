@@ -38,6 +38,14 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
+# 升级 Shadowsocks 内核
+```bash
+docker stop ss-libev
+docker rm ss-libev
+docker rmi teddysun/shadowsocks-libev
+docker pull teddysun/shadowsocks-libev
+docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+```
 # 客户端
 - 安卓系统 ： [Shadowsocks下载](https://github.com/shadowsocks/shadowsocks-android/releases) | [obfs插件下载](https://github.com/shadowsocks/simple-obfs-android/releases)    
 - Windows系统 ：[点击下载](https://github.com/shadowsocks/shadowsocks-windows/releases) | [obfs插件下载](https://github.com/shadowsocks/simple-obfs/releases)    
