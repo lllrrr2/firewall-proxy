@@ -18,7 +18,7 @@ acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/trojan.crt 
 - 安装Nginx
 ```bash
 apt update
-apt install nginx
+apt install -y nginx
 ```
 - 移除默认（**yourdomain.com**请替换为你自己的域名）
 ```bash
