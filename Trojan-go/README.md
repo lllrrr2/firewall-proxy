@@ -80,7 +80,7 @@ vim server.json
 - 5. 安装 Nginx  
 ```bash
 apt update
-apt install nginx
+apt install -y nginx
 ```
 - 6. 移除默认（ **your_domain.com 改为你的域名**）
 ```bash
