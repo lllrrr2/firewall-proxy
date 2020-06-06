@@ -19,7 +19,7 @@ acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/trojan.crt 
 - install Nginx
 ```bash
 apt update
-apt install nginx
+apt install -y nginx
 ```
 - modify config files（please modify **yourdomain.com** to your domain）
 ```bash
