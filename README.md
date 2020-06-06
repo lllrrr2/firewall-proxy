@@ -1,9 +1,5 @@
 # 关于
-本项目旨在提供几个主流的代理软件搭建教程，使用到的项目如下：    
-- Shadowsocks:https://github.com/shadowsocks/shadowsocks/tree/master    
-- V2ray:https://github.com/v2fly/v2ray-core     
-- Trojan:https://github.com/trojan-gfw/trojan     
-- Trojan-GO:https://github.com/p4gefau1t/trojan-go  
+本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验
 # 内容
 - Shadowsocks+OBFS（无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/shadowsocks  
 - V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/V2ray     
@@ -17,3 +13,18 @@
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS        
 ⭐⭐ Shadowsocks+OBFS     
+# 致谢  
+- [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
+- [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
+- [Trojan](https://github.com/trojan-gfw/trojan)       
+- [Trojan-GO](https://github.com/p4gefau1t/trojan-go)      
+- [tls-shunt-proxy](https://github.com/liberal-boy/tls-shunt-proxy)      
+- [nginx-openssl-chacha-naxsi](https://github.com/stylersnico/nginx-openssl-chacha-naxsi)     
+- [v2ray-tcp-tls-web](https://github.com/phlinhng/v2ray-tcp-tls-web)        
+- [across](https://github.com/teddysun/across)     
+- [Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5)     
+- [v2rayN](https://github.com/2dust/v2rayN)      
+- [v2rayNG](https://github.com/2dust/v2rayNG)     
+- [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
+- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
+- [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
