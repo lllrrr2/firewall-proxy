@@ -120,7 +120,7 @@ sudo sysctl -p
 - 启动服务
 ```bash
 nginx -s reload
-docker run -d --name trojan --restart always --net host -v /etc/trojan:/etc/trojan teddysun/trojan
+docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
 ```
 # 升级 Trojan 内核
 ```bash
