@@ -7,7 +7,7 @@ Debian 9/10 && Ubuntu 16/18/20
 ## 配置内容 
 - 升级并安装必要软件   
 ```bash
-apt update && apt -y install wget git vim
+apt update && apt -y install socat wget vim
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装脚本 
