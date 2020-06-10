@@ -14,7 +14,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 wget -qO- get.acme.sh | bash 
 source ~/.bashrc
 ```
-- request SSL certificate (modify **your_domain.com** to your domain）
+- request SSL certificate (modify **yourdomain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d yourdomain.com -k ec-256
 mkdir /etc/trojan
