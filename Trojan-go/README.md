@@ -2,11 +2,11 @@
 - You need correctly appoint your Domain to your Server IP, and DO NOT open CDN service at first	   
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**    	
 ## Build Environment	
-Debian 9 && Ubuntu 16~18
+Debian 9/10 && Ubuntu 16/18/20
 ## Content 
 - install basic tools   
 ```bash
-apt update && apt install -y wget
+apt update && apt -y install wget git vim
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script	 
@@ -23,7 +23,11 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.
 - install Docker && Trojan    
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/trojan-go
+```
+- modify config files
+```bash
 vim /etc/trojan-go/config.json
 ```
 > config a ：DO NOT Need to use CDN  
@@ -71,15 +75,10 @@ vim /etc/trojan-go/config.json
     }
 }
 ```
-- install Nginx  
+- modify config files
 ```bash
-apt update && apt install -y nginx
-```
-- modify config files（please modify **your_domain.com** to your domain）
-```bash
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/your_domain.com /etc/nginx/sites-enabled/
-vim /etc/nginx/conf.d/about.conf
+mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+vim /etc/nginx/conf.d/default.conf
 ```
 **paste the config file below**  
 ```bash
@@ -95,13 +94,11 @@ server {
     }
 
 }
-
 server {
     listen 127.0.0.1:80;
     server_name ip.ip.ip.ip;  #modify to your server IP address
     return 301 https://your_domain.com$request_uri;   #modify "your_domain.com" to your domain
 }
-
 server {
     listen 0.0.0.0:80;
     listen [::]:80;
@@ -116,7 +113,7 @@ server {
 ```
 - Start service  
 ```bash
-nginx -s reload
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ： 
@@ -126,12 +123,21 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 ## For new version Update:
+- Update trojan-go
 ```bash
 docker stop trojan-go
 docker rm trojan-go
 docker rmi teddysun/trojan-go
 docker pull teddysun/trojan-go
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
+```
+- Update nginx
+```bash
+docker stop nginx
+docker rm nginx
+docker rmi nginx
+docker pull nginx
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 ## Client 
 Windows 7.0+ ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
