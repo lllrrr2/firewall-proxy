@@ -2,11 +2,11 @@
 - 你需要有一个自己的域名，会正确的设置 `DNS解析` ，如果不会请自行 GOOGLE
 - **请注意配置中后面的备注部分，按要求修改**
 # 配置环境
-Debian 9 && Ubuntu 16~18
+Debian 9/10 && Ubuntu 16/18/20
 # 配置内容
 - 安装基础工具  
 ```bash
-apt-get update && apt-get -y install socat wget screen
+apt update && apt install -y socat wget git vim
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装证书生成脚本  
@@ -17,17 +17,13 @@ source ~/.bashrc
 - 安装证书  (**your_domain.com** 改为你的域名）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /key
-acme.sh --installcert -d your_domain.com --fullchain-file /key/server.crt --key-file /key/server.key --ecc
+mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
 ```
-- 安装密码套件  （如果中途失去连接可用 **screen -R openssl** 恢复当前窗口，脚本中的选项 **全部填 n**）
-```bash
-screen -S openssl        
-cd /tmp && wget --no-check-certificate https://raw.githubusercontent.com/stylersnico/nginx-openssl-chacha/master/build.sh && sh build.sh
-```
-- 安装 Docker && V2ray  
+- 安装 Docker && Nginx && V2ray  
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/v2ray
 ```
 - 编辑 v2ray 配置 
@@ -68,15 +64,14 @@ vim /etc/v2ray/config.json
 ```
 - 修改 Nginx 配置 
 ```bash
-mkdir /etc/nginx/conf.d
-vim /etc/nginx/conf.d/about.conf
+vim /etc/nginx/conf.d/default.conf
 ```
 - 复制配置  
 ```bash
 server {
     listen 443 ssl http2;                                                       
-    ssl_certificate       /key/server.crt;  
-    ssl_certificate_key   /key/server.key;
+    ssl_certificate       /etc/nginx/conf.d/server.crt;  
+    ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
    
@@ -114,8 +109,8 @@ server {
 ```
 - 启动服务  
 ```bash 
-nginx -s reload
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 - 开启 BBR 加速 
 ```bash
@@ -123,13 +118,22 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-# 更新 V2ray
+# 更新软件
+- 更新 V2ray
 ```bash
 docker stop v2ray
 docker rm v2ray
 docker rmi teddysun/v2ray
 docker pull teddysun/v2ray
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+```
+- 更新 Nginx
+```bash
+docker stop nginx
+docker rm nginx
+docker rmi nginx
+docker pull nginx
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 # 客户端配置
 
