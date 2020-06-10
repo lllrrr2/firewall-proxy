@@ -1,70 +1,35 @@
 # 准备工作
-1.你需要拥有一个自己的**域名**，并会正确设置**DNS解析**，如果你不知道以上两个名词的含义，请自行Google学习     
-2.搭建环境 ：纯净的 Debian 9 && Ubuntu 16~18 系统
-
+1.你需要拥有一个自己的**域名**，并**已经将域名解析至你的服务器**    
+# 搭建环境
+Debian 9/10 && Ubuntu 16/18/20
 # 开始部署
-- 下载证书申请脚本
+- 安装基本工具
 ```bash
-apt-get update && apt-get -y install socat         
-wget -qO- get.acme.sh | bash       
+apt update && apt -y install socat wget vim     
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+- 安装脚本
+```bash
+wget -qO- get.acme.sh | bash 
 source ~/.bashrc
 ```
-- 安装脚本 （注意：**yourdomain.com**请替换为你自己的域名）
+- 申请证书 （请将 **yourdomain.com** 改为你的域名）
 ```bash
 acme.sh --issue --standalone -d yourdomain.com -k ec-256
 mkdir /etc/trojan
-acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/trojan.crt --key-file /etc/trojan/trojan.key --ecc
+acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.crt --key-file /etc/trojan/server.key --ecc
 ```
-- 安装Nginx
-```bash
-apt update
-apt install -y nginx
-```
-- 移除默认（**yourdomain.com**请替换为你自己的域名）
-```bash
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/
-vim /etc/nginx/conf.d/about.conf
-```
-- 将以下内容粘贴 
-```bash
-server {
-    listen 127.0.0.1:80 default_server;
-    server_name yourdomain.com;  #改为你的域名
-    location / {
-        proxy_pass proxy.com;   #改为你想伪装的网站
-        proxy_redirect     off;
-        proxy_connect_timeout      75; 
-        proxy_send_timeout         90; 
-        proxy_read_timeout         90; 
-        proxy_buffer_size          4k; 
-        proxy_buffers              4 32k; 
-        proxy_busy_buffers_size    64k; 
-        proxy_temp_file_write_size 64k; 
-    }
-
-}
-
-server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;   #改为你服务器的IP
-    return 301 https://yourdomain.com$request_uri;   #改为你的域名
-}
-
-server {
-    listen 0.0.0.0:80;
-    listen [::]:80;
-    server_name _;
-    return 301 https://$host$request_uri;
-}
-```
-- 安装Trojan并编辑配置文件
+- 安装 Docker && Nginx && Trojan
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/trojan
-cd /etc/trojan && vim config.json
 ```
-- 将以下内容粘贴
+- 修改 Trojan 配置
+```bash
+vim /etc/trojan/config.json
+```
+- 将以下内容粘贴 
 ```bash
 {
     "run_type": "server",
@@ -77,8 +42,8 @@ cd /etc/trojan && vim config.json
     ],
     "log_level": 1,
     "ssl": {
-        "cert": "/etc/trojan/trojan.crt",
-        "key": "/etc/trojan/trojan.key",
+        "cert": "/etc/trojan/server.crt",
+        "key": "/etc/trojan/server.key",
         "key_password": "",
         "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",
         "cipher_tls13": "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384",
@@ -111,24 +76,64 @@ cd /etc/trojan && vim config.json
     }
 }
 ```
+- 修改 Nginx 配置
+```bash
+mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+vim /etc/nginx/conf.d/default.conf
+```
+- 将以下内容粘贴
+```bash
+server {
+    listen 127.0.0.1:80 default_server;
+    server_name yourdomain.com;    #修改为你的域名
+    location / {
+        proxy_pass proxy.com;         #修改为你想伪装的网站域名，例如 https://unsplash.com/
+        proxy_redirect     off;
+        proxy_buffer_size          64k; 
+        proxy_buffers              32 32k; 
+        proxy_busy_buffers_size    128k; 
+    }
+
+}
+server {
+    listen 127.0.0.1:80;
+    server_name ip.ip.ip.ip;      #修改为你服务器的 IP地址
+    return 301 https://yourdomain.com$request_uri;   #修改为你的域名
+}
+server {
+    listen 0.0.0.0:80;
+    listen [::]:80;
+    server_name _;
+    return 301 https://$host$request_uri;
+}
+```
+- 启动服务
+```bash
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
+docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart=always -d teddysun/trojan
+```
 - 启动BBR加速
 ```bash
 sudo bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 sudo bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sudo sysctl -p
 ```
-- 启动服务
-```bash
-nginx -s reload
-docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
-```
-# 升级 Trojan 内核
+# 更新软件
+- 更新 Trojan
 ```bash
 docker stop trojan
 docker rm trojan
 docker rmi teddysun/trojan
 docker pull teddysun/trojan
 docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
+```
+- 更新 Nginx
+```bash
+docker stop nginx
+docker rm nginx
+docker rmi nginx
+docker pull nginx
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 # 客户端
 安卓系统 ：[点击下载](https://github.com/trojan-gfw/igniter/releases)          
