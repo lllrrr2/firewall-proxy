@@ -20,7 +20,7 @@ acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/trojan-go
 acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.crt --key-file /etc/trojan-go/server.key --ecc
 ```
-- install Docker && Trojan    
+- install Docker && Nginx && Trojan    
 ```bash
 wget -qO- get.docker.com | bash
 docker pull nginx
