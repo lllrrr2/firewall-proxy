@@ -2,11 +2,12 @@
 - 一台可用的 VPS   
 - 一个 **没有被 DNS 污染的域名**    
 - **确保使用的域名已经成功解析到你的 VPS服务器，并且 未开启 CDN选项**   
-- 纯净的 Debian 9 && Ubuntu 16~18 系统 
+## 搭建环境
+Debian 9/10 && Ubuntu 16/18/20
 ## 配置内容 
 - 升级并安装必要软件   
 ```bash
-apt update && apt install -y wget
+apt update && apt -y install wget git vim
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装脚本 
@@ -20,10 +21,14 @@ acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/trojan-go
 acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.crt --key-file /etc/trojan-go/server.key --ecc
 ```
-- 安装 Docker && Trojan     
+- 安装 Docker && Nginx && Trojan     
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/trojan-go
+```
+- 修改 Trojan-go 配置
+```bash
 vim /etc/trojan-go/config.json
 ```
 > 配置a ：不需要使用 **CDN** 进行流量中转 （你的服务器 IP地址 未被墙）  
@@ -71,17 +76,10 @@ vim /etc/trojan-go/config.json
     }
 }
 ```
-**`:wq!`保存并退出** 
-
-- 安装 Nginx  
+- 修改 Nginx 配置  
 ```bash
-apt update && apt install -y nginx
-```
-- 移除默认（ **your_domain.com 改为你的域名**）
-```bash
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/your_domain.com /etc/nginx/sites-enabled/
-vim /etc/nginx/conf.d/about.conf
+mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+vim /etc/nginx/conf.d/default.conf
 ```
 **复制下列配置**  
 ```bash
@@ -118,7 +116,7 @@ server {
 ```
 - 启动服务  
 ```bash
-nginx -s reload
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
 ```
 - 开启 BBR 加速 
@@ -127,13 +125,22 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-## 升级 Trojan-Go 内核
+## 更新软件
+- 更新 Trojan-go
 ```bash
 docker stop trojan-go
 docker rm trojan-go
 docker rmi teddysun/trojan-go
 docker pull teddysun/trojan-go
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
+```
+- 更新 Nginx
+```bash
+docker stop nginx
+docker rm nginx
+docker rmi nginx
+docker pull nginx
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 ## 客户端的使用 
 PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
