@@ -2,11 +2,11 @@
 - You need correctly appoint your Domain to your Server IP, and DO NOT open **CDN service** at first
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**
 # Build Environment
-Debian 9 && Ubuntu 16~18
+Debian 9~10 && Ubuntu 16~18~20
 # Content
 - install basic tools
 ```bash
-apt-get update && apt-get -y install socat wget screen    
+apt update && apt install -y socat wget git vim     
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script  
