@@ -17,18 +17,13 @@ source ~/.bashrc
 - request SSL certificate (modify **your_domain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /key
-acme.sh --installcert -d your_domain.com --fullchain-file /key/server.crt --key-file /key/server.key --ecc
+mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
 ```
-- install basic dependence    
-（If you lose connection, you can use **screen -R openssl** to recover，All choice in script please select **n**）
-```bash
-screen -S openssl        
-cd /tmp && wget --no-check-certificate https://raw.githubusercontent.com/stylersnico/nginx-openssl-chacha/master/build.sh && sh build.sh
-```
-- Install Docker && V2ray
+- Install Docker && && Nginx V2ray
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/v2ray
 ```
 - modify config file 
@@ -69,15 +64,14 @@ vim /etc/v2ray/config.json
 ```
 - modify config files of Nginx 
 ```bash
-mkdir /etc/nginx/conf.d
-vim /etc/nginx/conf.d/about.conf
+vim /etc/nginx/conf.d/default.conf
 ```
 - copy your config  
 ```bash
 server {
     listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/v2ray/v2ray.crt;  
-    ssl_certificate_key   /etc/v2ray/v2ray.key;
+    ssl_certificate       /etc/nginx/conf.d/server.crt;  
+    ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
     
@@ -115,8 +109,8 @@ server {
 ```
 - Start Service  
 ```bash 
-nginx -s reload
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```bash
@@ -125,12 +119,21 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # For new version Update:
+- Update v2ray    
 ```bash
 docker stop v2ray
 docker rm v2ray
 docker rmi teddysun/v2ray
 docker pull teddysun/v2ray
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+```
+- Update nginx   
+```bash
+docker stop nginx
+docker rm nginx
+docker rmi nginx
+docker pull nginx
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 ```
 # Client
 Windows 7+: [Download](https://github.com/2dust/v2rayN/releases)    
