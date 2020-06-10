@@ -2,7 +2,7 @@
 - You need correctly appoint your Domain to your Server IP, and DO NOT open **CDN service** at first
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**
 # Build Environment
-Debian 9~10 && Ubuntu 16~18~20
+Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
