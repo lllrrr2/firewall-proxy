@@ -120,6 +120,7 @@ vim /etc/trojan-go/config.json
 }
 ```
 </details>
+
 - 修改 Nginx 配置  
 ```bash
 mkdir /etc/nginx && mkdir /etc/nginx/conf.d
