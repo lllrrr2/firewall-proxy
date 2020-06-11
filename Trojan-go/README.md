@@ -31,7 +31,9 @@ docker pull teddysun/trojan-go
 ```bash
 vim /etc/trojan-go/config.json
 ```
-> 配置a ：不需要使用 **CDN** 进行流量中转 （你的服务器 IP地址 未被墙）  
+<details>
+<summary>配置1 ：不使用CDN</summary>
+
 ```bash
 {
     "run_type": "server",
@@ -43,6 +45,8 @@ vim /etc/trojan-go/config.json
         "password0"  #修改为你设定的密码
     ],
     "ssl": {
+        "verify": true,
+        "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #修改为你的域名
@@ -50,7 +54,11 @@ vim /etc/trojan-go/config.json
     }
 }
 ```
->> 配置b ：需要使用**CDN** 进行流量中转 （你的服务器 IP地址 已经被墙）  
+</details>
+
+<details>
+<summary>配置2 ：使用CDN，且你信任你的CDN提供商</summary>
+
 ```bash
 {
     "run_type": "server",
@@ -62,20 +70,56 @@ vim /etc/trojan-go/config.json
         "password0"  #修改为你设定的密码
     ],
     "ssl": {
+        "verify": true,
+        "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #修改为你的域名
         "fallback_port": 3000 
     },
-      "websocket": {
-        "enabled": true,
-        "path": "/your_path",    #修改为你设定的路径
-        "hostname": "your_domain.com",   #修改为你的域名
-        "obfuscation_password": "password1",   #修改为另一个密码，切勿与上面的密码相同
-        "double_tls": false
+    "websocket": {
+    "enabled": true,
+    "path": "/your_path",  #修改为你设定的路径
+    "hostname": "your_domain.com"   #修改为你的域名
     }
 }
 ```
+</details>  
+
+<details>
+<summary>配置3 ：使用CDN，但你不信任你的CDN提供商（例如国内厂商的CDN）</summary>
+
+```bash
+{
+    "run_type": "server",
+    "local_addr": "0.0.0.0",
+    "local_port": 443,
+    "remote_addr": "127.0.0.1",
+    "remote_port": 80,
+    "password": [
+        "password0"  #修改为你设定的密码
+    ],
+    "ssl": {
+        "verify": true,
+        "verify_hostname": true,
+        "cert": "/etc/trojan-go/server.crt",
+        "key": "/etc/trojan-go/server.key",
+	"sni": "your_domain.com",    #修改为你的域名
+        "fallback_port": 3000 
+    },
+    "websocket": {
+    "enabled": true,
+    "path": "/your_path",  #修改为你设定的路径
+    "hostname": "your_domain.com"   #修改为你的域名
+    },
+    "shadowsocks": {
+    "enabled": true,
+    "method": "AES-128-GCM",
+    "password": "password1"   #修改为另一个密码，请勿与上方密码一致
+  }
+}
+```
+</details>
 - 修改 Nginx 配置  
 ```bash
 mkdir /etc/nginx && mkdir /etc/nginx/conf.d
@@ -93,15 +137,12 @@ server {
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;  
     }
-
 }
-
 server {
     listen 127.0.0.1:80;
     server_name ip.ip.ip.ip;  #修改为你服务器的 IP地址
     return 301 https://your_domain.com$request_uri;   #修改为你的域名
 }
-
 server {
     listen 0.0.0.0:80;
     listen [::]:80;
@@ -144,9 +185,12 @@ docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --
 ```
 ## 客户端的使用 
 PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.5.1m/Igniter-Go-v0.5.1.apk)			
+安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.0/Igniter-Go-v0.7.0.apk)			
 
 **移动版推荐配置如下 ：**		
+<details>
+<summary>对应配置1</summary>
+
 ```bash
 {
     "run_type": "client",
@@ -159,10 +203,41 @@ PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
     ],
     "ssl": {
         "verify": true,
+	"verify_hostname": true,
         "sni": "your_domain",
         "session_ticket": true,
         "reuse_session": true,
-        "fingerprint": "auto"
+        "fingerprint": "firefox"
+    },
+    "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "idle_timeout": 60
+    }
+}
+```
+</details>
+
+<details>
+<summary>对应配置2</summary>
+
+```bash
+{
+    "run_type": "client",
+    "local_addr": "127.0.0.1",
+    "local_port": 1080,
+    "remote_addr": "your_domain",
+    "remote_port": 443,
+    "password": [
+        "your_password"
+    ],
+    "ssl": {
+        "verify": true,
+	"verify_hostname": true,
+        "sni": "your_domain",
+        "session_ticket": true,
+        "reuse_session": true,
+        "fingerprint": "firefox"
     },
     "mux": {
         "enabled": true,
@@ -170,11 +245,50 @@ PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
         "idle_timeout": 60
     },
     "websocket": {
-        "enabled": false,
-        "path": "\/path",
-        "double_tls": false,
-        "obfuscation_password": ""
+    "enabled": true,
+    "path": "/your_path", 
+    "hostname": "your_domain.com"  
     }
 }
-```		
-**注：如果开启 websocket ，请自行按照服务器端对本地配置进行修改**
+```
+</details>
+
+<details>
+<summary>对应配置3</summary>
+
+```bash
+{
+    "run_type": "client",
+    "local_addr": "127.0.0.1",
+    "local_port": 1080,
+    "remote_addr": "your_domain",
+    "remote_port": 443,
+    "password": [
+        "your_password"
+    ],
+    "ssl": {
+        "verify": true,
+	"verify_hostname": true,
+        "sni": "your_domain",
+        "session_ticket": true,
+        "reuse_session": true,
+        "fingerprint": "firefox"
+    },
+    "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "idle_timeout": 60
+    },
+    "websocket": {
+    "enabled": true,
+    "path": "/your_path", 
+    "hostname": "your_domain.com"  
+    },
+    "shadowsocks": {
+    "enabled": true,
+    "method": "AES-128-GCM",
+    "password": "password1" 
+  }
+}
+```
+</details>
