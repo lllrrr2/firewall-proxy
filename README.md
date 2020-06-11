@@ -15,14 +15,11 @@
 ⭐⭐⭐ V2ray+Websocket+TLS        
 ⭐⭐ Shadowsocks+OBFS     
 # 致谢  
-- [@teddysun-Dockerhub](https://hub.docker.com/u/teddysun)    
+- [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
 - [Trojan](https://github.com/trojan-gfw/trojan)       
-- [Trojan-GO](https://github.com/p4gefau1t/trojan-go)      
-- [tls-shunt-proxy](https://github.com/liberal-boy/tls-shunt-proxy)      
-- [nginx-openssl-chacha-naxsi](https://github.com/stylersnico/nginx-openssl-chacha-naxsi)     
-- [v2ray-tcp-tls-web](https://github.com/phlinhng/v2ray-tcp-tls-web)        
+- [Trojan-GO](https://github.com/p4gefau1t/trojan-go)              
 - [across](https://github.com/teddysun/across)     
 - [Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5)     
 - [v2rayN](https://github.com/2dust/v2rayN)      
