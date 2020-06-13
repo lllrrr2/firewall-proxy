@@ -3,7 +3,7 @@
 所有搭建方式均採用 [Docker](https://hub.docker.com/) , 方便寫入和升級
 # 內容
 - Shadowsocks+OBFS（無需功能變數名稱）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Shadowsocks     
+https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/shadowsocks     
 - V2ray+Websocket+TLS (需要功能變數名稱）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray        
 - Trojan（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan         
