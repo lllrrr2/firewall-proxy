@@ -1,20 +1,27 @@
-# 关于
-本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
-所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
-# 内容
-- Shadowsocks+OBFS（无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/shadowsocks  
-- V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/V2ray     
-- Trojan（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/Trojan      
-- Trojan-GO（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/Trojan-go    
-# 注意事项
-- **需要域名** 的搭建方式需要你 **拥有一个自己的域名**并会**正确设置解析记录**     
-由于互联网上关于此的教程数以万计，因此**如果你不会请自行学习**，教程中不再赘述基础知识
-# 推荐指数  
+English Version | [香港繁體](https://github.com/charlieethan/firewall-proxy/tree/traditional) | [大陆简体](https://github.com/charlieethan/firewall-proxy/tree/master)
+# About
+This project mission is to provide tutorials to let you across the firewall in your country, every method is still working in China,   
+But whether works in your country, you need to try it one by one     
+All the project rely on [Dockerhub](https://hub.docker.com/),you can learn something more about it    
+# Content
+- Shadowsocks+Obfuscation（DO NOT Need a domain）：  
+https://github.com/charlieethan/firewall-proxy/tree/English/shadowsocks    
+- V2ray+Websocket+TLS (Need a domain）：   
+https://github.com/charlieethan/firewall-proxy/tree/English/V2ray           
+- Trojan（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/English/Trojan
+- Trojan-GO（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/English/Trojan-go   
+# Precautions
+- The project remarks "Need a domain" **need you have a domain** to build the service   
+ It's necessary, **If you do not have, please buy one**    
+- If you choose **"Need a domain"** solution, you need a little knowledge about     
+**"How to set a record on your Nameservice Provider to Point your Domain to your Server IP address"**   
+All the servive build in this premise,**Because it's so easy to learn, I won't introduce again in the Tutor** 
+# Recommend index 
 ⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐ Trojan             
-⭐⭐⭐ V2ray+Websocket+TLS        
-⭐⭐ Shadowsocks+OBFS     
-# 致谢  
+⭐⭐⭐ V2ray+Websocket+TLS       
+⭐⭐ Shadowsocks+Obfuscation    
+# Credit     
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
