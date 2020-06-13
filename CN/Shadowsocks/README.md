@@ -56,6 +56,3 @@ Windows系统 配置如下：
 obfs-local
 obfs=tls;www.github.com
 ```
-- Windows 用户可以使用我总结的规则来加速 **Onedrive云盘** 在本地的下载速度   
-规则如下 ：https://github.com/charlieethan/firewall-proxy/releases/download/V4.1.10.0/user-rule.txt  
-**下载后请直接复制到 Shadowsocks 所在的文件夹并选择覆盖，并重启 Shadowsocks 服务**
