@@ -16,21 +16,21 @@ mkdir -p /etc/shadowsocks-libev
 cat > /etc/shadowsocks-libev/config.json <<EOF
 {
     "server":"0.0.0.0",
-    "server_port":9000,     # modify port
+    "server_port":443,
     "password":"password0", # modify password
     "timeout":300,
     "method":"aes-256-gcm",
     "fast_open":false,
-    "nameserver":"8.8.8.8",
+    "nameserver":"1.1.1.1",
     "mode":"tcp_and_udp",
-    "plugin":"obfs-server",
-    "plugin_opts":"obfs=tls"
+    "plugin":"v2ray-plugin",
+    "plugin_opts":"server"
 }
 EOF
 ```
-- Start Service （Please modify "9000" to your set port before）
+- Start Service
 ```
-docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```
@@ -44,16 +44,12 @@ docker stop ss-libev
 docker rm ss-libev
 docker rmi teddysun/shadowsocks-libev
 docker pull teddysun/shadowsocks-libev
-docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 # Client
-- Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/shadowsocks/simple-obfs-android/releases)    
+- Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/shadowsocks/v2ray-plugin-android/releases)    
 - Windows 7+: [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-windows/releases)      
-[Plugin Download](https://github.com/shadowsocks/simple-obfs/releases)    
+[Plugin Download](https://github.com/shadowsocks/v2ray-plugin/releases)    
 The config on Windows:
 
-![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/2.jpg)
-```
-obfs-local
-obfs=tls;www.github.com
-```
+![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/ss.jpg)

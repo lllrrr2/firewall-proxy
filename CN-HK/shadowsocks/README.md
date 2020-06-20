@@ -16,21 +16,21 @@ mkdir -p /etc/shadowsocks-libev
 cat > /etc/shadowsocks-libev/config.json <<EOF
 {
     "server":"0.0.0.0",
-    "server_port":9000,     #修改端口
+    "server_port":443,
     "password":"password0", #修改密碼
     "timeout":300,
     "method":"aes-256-gcm",
     "fast_open":false,
-    "nameserver":"8.8.8.8",
+    "nameserver":"1.1.1.1",
     "mode":"tcp_and_udp",
-    "plugin":"obfs-server",
-    "plugin_opts":"obfs=tls"
+    "plugin":"v2ray-plugin",
+    "plugin_opts":"server"
 }
 EOF
 ```
-- 啟動服務 （請將`9000`改為你自己設置的端口）
+- 啟動服務
 ```
-docker run -d -p 9000:9000 -p 9000:9000/udp --name ss-libev --restart=always -v /etc/shadowsocks-libev:/etc/shadowsocks-libev teddysun/shadowsocks-libev
+docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 - 開啟 BBR 加速：
 ```
@@ -44,15 +44,11 @@ docker stop ss-libev
 docker rm ss-libev
 docker rmi teddysun/shadowsocks-libev
 docker pull teddysun/shadowsocks-libev
-docker run --network host --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
 ```
 # 客戶端
-- 安卓系統 ： [Shadowsocks下載](https://github.com/shadowsocks/shadowsocks-android/releases) | [obfs插件下載](https://github.com/shadowsocks/simple-obfs-android/releases)    
-- Windows系統 ：[點擊下載](https://github.com/shadowsocks/shadowsocks-windows/releases) | [obfs插件下載](https://github.com/shadowsocks/simple-obfs/releases)    
+- 安卓系統 ： [Shadowsocks下載](https://github.com/shadowsocks/shadowsocks-android/releases) | [obfs插件下載](https://github.com/shadowsocks/v2ray-plugin-android/releases)    
+- Windows系統 ：[點擊下載](https://github.com/shadowsocks/shadowsocks-windows/releases) | [obfs插件下載](https://github.com/shadowsocks/v2ray-plugin/releases)    
 Windows系統 配置如下：  
 
-![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/2.jpg)
-```
-obfs-local
-obfs=tls;www.github.com
-```
+![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/ss.jpg)
