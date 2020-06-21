@@ -49,7 +49,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     }
@@ -75,7 +74,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
@@ -106,7 +104,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
@@ -189,7 +186,7 @@ docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --
 ```
 ## 客戶端的使用 
 PC平臺 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-安卓平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.0/Igniter-Go-v0.7.0.apk)			
+安卓平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			
 
 **移動版推薦配置如下 ：**		
 <details>

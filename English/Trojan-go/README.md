@@ -49,7 +49,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
     }
@@ -75,7 +74,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
     },
@@ -106,7 +104,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
     },
@@ -189,7 +186,7 @@ docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --
 ```
 ## Client 
 Windows 7.0+ ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.0/Igniter-Go-v0.7.0.apk)			
+Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			
 
 **Recommend config on Mobile ：**		
 <details>

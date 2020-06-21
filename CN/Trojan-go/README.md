@@ -49,7 +49,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改为你的域名
         "fallback_port": 3000 
     }
@@ -75,7 +74,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改为你的域名
         "fallback_port": 3000 
     },
@@ -106,7 +104,6 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-        "prefer_server_cipher": true,
 	    "sni": "your_domain.com",    #修改为你的域名
         "fallback_port": 3000 
     },
@@ -189,7 +186,7 @@ docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --
 ```
 ## 客户端的使用 
 PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.0/Igniter-Go-v0.7.0.apk)			
+安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			
 
 **移动版推荐配置如下 ：**		
 <details>
