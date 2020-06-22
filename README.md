@@ -4,7 +4,7 @@ This project mission is to provide tutorials to let you across the firewall in y
 But whether works in your country, you need to try it one by one     
 All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn something more about it    
 # Content
-- Shadowsocks+Obfuscation（DO NOT Need a domain）：  
+- Shadowsocks+V2ray plugin（DO NOT Need a domain）：  
 https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks    
 - V2ray+Websocket+TLS (Need a domain）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray           
@@ -20,7 +20,7 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS       
-⭐⭐ Shadowsocks+Obfuscation    
+⭐⭐ Shadowsocks+V2ray plugin    
 # Credit     
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      

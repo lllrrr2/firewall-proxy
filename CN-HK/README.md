@@ -2,7 +2,7 @@
 本項目旨在提供幾個主流的代理軟體搭建教程,讓你獲得自由的上網體驗      
 所有搭建方式均採用 [Docker](https://hub.docker.com/) , 方便寫入和升級
 # 內容
-- Shadowsocks+OBFS（無需功能變數名稱）：   
+- Shadowsocks+V2ray plugin（無需功能變數名稱）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/shadowsocks     
 - V2ray+Websocket+TLS (需要功能變數名稱）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray        
@@ -15,7 +15,7 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray
 ⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS       
-⭐⭐ Shadowsocks+OBFS    
+⭐⭐ Shadowsocks+V2ray plugin    
 # 致謝      
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      

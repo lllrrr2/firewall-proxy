@@ -2,7 +2,7 @@
 本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
 所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
-- Shadowsocks+OBFS（无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
+- Shadowsocks+V2ray plugin（无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
 - V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray     
 - Trojan（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan      
 - Trojan-GO（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan-go    
@@ -13,7 +13,7 @@
 ⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS        
-⭐⭐ Shadowsocks+OBFS     
+⭐⭐ Shadowsocks+V2ray plugin     
 # 致谢  
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
