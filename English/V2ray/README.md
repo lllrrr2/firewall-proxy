@@ -25,6 +25,7 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/serv
 wget -qO- get.docker.com | bash
 docker pull nginx
 docker pull teddysun/v2ray
+docker pull containrrr/watchtower
 ```
 - modify config file 
 ```bash
@@ -111,6 +112,7 @@ server {
 ```bash 
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```bash
@@ -119,22 +121,8 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # For new version Update:
-- Update v2ray    
-```bash
-docker stop v2ray
-docker rm v2ray
-docker rmi teddysun/v2ray
-docker pull teddysun/v2ray
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
-```
-- Update nginx   
-```bash
-docker stop nginx
-docker rm nginx
-docker rmi nginx
-docker pull nginx
-docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
-```
+Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
+
 # Client
 Windows 7+: [Download](https://github.com/2dust/v2rayN/releases)    
 Configuraton is like below:   

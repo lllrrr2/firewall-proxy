@@ -9,6 +9,7 @@ wget -qO- get.docker.com | bash
 - 安裝shadowsocks
 ```
 docker pull teddysun/shadowsocks-libev
+docker pull containrrr/watchtower
 mkdir -p /etc/shadowsocks-libev
 ```
 - 寫入配置
@@ -31,6 +32,7 @@ EOF
 - 啟動服務
 ```
 docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 開啟 BBR 加速：
 ```
@@ -38,14 +40,9 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-# 升級 Shadowsocks 内核
-```bash
-docker stop ss-libev
-docker rm ss-libev
-docker rmi teddysun/shadowsocks-libev
-docker pull teddysun/shadowsocks-libev
-docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
-```
+# 升級軟體
+使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
+
 # 客戶端
 - 安卓系統 ： [Shadowsocks下載](https://github.com/shadowsocks/shadowsocks-android/releases) | [obfs插件下載](https://github.com/shadowsocks/v2ray-plugin-android/releases)    
 - Windows系統 ：[點擊下載](https://github.com/shadowsocks/shadowsocks-windows/releases) | [obfs插件下載](https://github.com/shadowsocks/v2ray-plugin/releases)    

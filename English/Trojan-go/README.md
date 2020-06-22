@@ -25,6 +25,7 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.
 wget -qO- get.docker.com | bash
 docker pull nginx
 docker pull teddysun/trojan-go
+docker pull containrrr/watchtower
 ```
 - modify config files
 ```bash
@@ -160,6 +161,7 @@ server {
 ```bash
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ： 
 ```bash
@@ -168,22 +170,8 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 ## For new version Update:
-- Update trojan-go
-```bash
-docker stop trojan-go
-docker rm trojan-go
-docker rmi teddysun/trojan-go
-docker pull teddysun/trojan-go
-docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
-```
-- Update nginx
-```bash
-docker stop nginx
-docker rm nginx
-docker rmi nginx
-docker pull nginx
-docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
-```
+Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
+
 ## Client 
 Windows 7.0+ ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
 Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			

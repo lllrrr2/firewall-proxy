@@ -26,6 +26,7 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.
 wget -qO- get.docker.com | bash
 docker pull nginx
 docker pull teddysun/trojan-go
+docker pull containrrr/watchtower
 ```
 - 修改 Trojan-go 配置
 ```bash
@@ -160,6 +161,7 @@ server {
 ```bash
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 开启 BBR 加速 
 ```bash
@@ -168,22 +170,8 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 ## 更新软件
-- 更新 Trojan-go
-```bash
-docker stop trojan-go
-docker rm trojan-go
-docker rmi teddysun/trojan-go
-docker pull teddysun/trojan-go
-docker run --network host --name trojan-go -v /etc/trojan-go:/etc/trojan-go --restart=always -d teddysun/trojan-go
-```
-- 更新 Nginx
-```bash
-docker stop nginx
-docker rm nginx
-docker rmi nginx
-docker pull nginx
-docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
-```
+使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
+
 ## 客户端的使用 
 PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
 安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			

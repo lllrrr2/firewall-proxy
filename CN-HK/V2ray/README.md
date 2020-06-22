@@ -25,6 +25,7 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/serv
 wget -qO- get.docker.com | bash
 docker pull nginx
 docker pull teddysun/v2ray
+docker pull containrrr/watchtower
 ```
 - 編輯 v2ray 配置 
 ```bash
@@ -111,6 +112,7 @@ server {
 ```bash 
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 開啟 BBR 加速 
 ```bash
@@ -119,22 +121,8 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # 更新軟體
-- 更新 V2ray
-```bash
-docker stop v2ray
-docker rm v2ray
-docker rmi teddysun/v2ray
-docker pull teddysun/v2ray
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
-```
-- 更新 Nginx
-```bash
-docker stop nginx
-docker rm nginx
-docker rmi nginx
-docker pull nginx
-docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
-```
+使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
+
 # 客戶端配置
 
 ![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/1.jpg)

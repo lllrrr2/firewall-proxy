@@ -9,6 +9,7 @@ wget -qO- get.docker.com | bash
 - install Shadowsocks
 ```
 docker pull teddysun/shadowsocks-libev
+docker pull containrrr/watchtower
 mkdir -p /etc/shadowsocks-libev
 ```
 - Paste config files
@@ -31,6 +32,7 @@ EOF
 - Start Service
 ```
 docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```
@@ -39,13 +41,7 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # For new version Update:
-```bash
-docker stop ss-libev
-docker rm ss-libev
-docker rmi teddysun/shadowsocks-libev
-docker pull teddysun/shadowsocks-libev
-docker run --network host --name ss-libev  -v /etc/shadowsocks-libev:/etc/shadowsocks-libev --restart=always -d teddysun/shadowsocks-libev
-```
+Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 # Client
 - Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/shadowsocks/v2ray-plugin-android/releases)    
 - Windows 7+: [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-windows/releases)      

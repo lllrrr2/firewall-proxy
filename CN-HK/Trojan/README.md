@@ -24,6 +24,7 @@ acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.crt 
 wget -qO- get.docker.com | bash
 docker pull nginx
 docker pull teddysun/trojan
+docker pull containrrr/watchtower
 ```
 - 修改 Trojan 配置
 ```bash
@@ -111,6 +112,7 @@ server {
 ```bash
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart=always -d teddysun/trojan
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 啟動BBR加速
 ```bash
@@ -119,22 +121,8 @@ sudo bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sudo sysctl -p
 ```
 # 更新軟體
-- 更新 Trojan
-```bash
-docker stop trojan
-docker rm trojan
-docker rmi teddysun/trojan
-docker pull teddysun/trojan
-docker run --network host --name trojan -v /etc/trojan:/etc/trojan --restart always -d teddysun/trojan
-```
-- 更新 Nginx
-```bash
-docker stop nginx
-docker rm nginx
-docker rmi nginx
-docker pull nginx
-docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
-```
+使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
+
 # 客戶端
 安卓系統 ：[點擊下載](https://github.com/trojan-gfw/igniter/releases)          
 > 配置如下： **地址**填你的功能變數名稱，**端口**填 443 ，**密碼**填你剛才設置的密碼，其他選項無需更改        
