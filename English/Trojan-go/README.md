@@ -174,7 +174,7 @@ Using this config method,**watchtower** can auto detect and update your software
 
 ## Client 
 Windows 7.0+ ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			
+Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
 
 **Recommend config on Mobile ：**		
 <details>

@@ -174,7 +174,7 @@ sysctl -p
 
 ## 客户端的使用 
 PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases   
-安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.5/Igniter-Go-v0.7.5.apk)			
+安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
 
 **移动版推荐配置如下 ：**		
 <details>
