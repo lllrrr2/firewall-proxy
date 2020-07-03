@@ -44,8 +44,8 @@ sysctl -p
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
 # 客户端
-- 安卓系统 ： [Shadowsocks下载](https://github.com/shadowsocks/shadowsocks-android/releases) | [V2ray Plugin 插件下载](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
-- Windows系统 ：[点击下载](https://github.com/shadowsocks/shadowsocks-windows/releases) | [V2ray Plugin 插件下载](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
+- 安卓系统 ： [Shadowsocks下载](https://github.com/shadowsocks/shadowsocks-android/releases) | [V2ray Plugin 插件下载](https://github.com/teddysun/v2ray-plugin-android/releases)    
+- Windows系统 ：[点击下载](https://github.com/shadowsocks/shadowsocks-windows/releases) | [V2ray Plugin 插件下载](https://github.com/teddysun/v2ray-plugin/releases)    
 Windows系统 配置如下：  
 
 ![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/ss.jpg)

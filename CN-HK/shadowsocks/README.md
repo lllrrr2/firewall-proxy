@@ -44,8 +44,8 @@ sysctl -p
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
 
 # 客戶端
-- 安卓系統 ： [Shadowsocks下載](https://github.com/shadowsocks/shadowsocks-android/releases) | [V2ray Plugin 插件下載](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
-- Windows系統 ：[點擊下載](https://github.com/shadowsocks/shadowsocks-windows/releases) | [V2ray Plugin 插件下載](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
+- 安卓系統 ： [Shadowsocks下載](https://github.com/shadowsocks/shadowsocks-android/releases) | [V2ray Plugin 插件下載](https://github.com/teddysun/v2ray-plugin-android/releases)    
+- Windows系統 ：[點擊下載](https://github.com/shadowsocks/shadowsocks-windows/releases) | [V2ray Plugin 插件下載](https://github.com/teddysun/v2ray-plugin/releases)    
 Windows系統 配置如下：  
 
 ![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/ss.jpg)
