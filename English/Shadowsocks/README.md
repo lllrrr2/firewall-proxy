@@ -43,9 +43,9 @@ sysctl -p
 # For new version Update:
 Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 # Client
-- Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/shadowsocks/v2ray-plugin-android/releases)    
+- Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
 - Windows 7+: [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-windows/releases)      
-[Plugin Download](https://github.com/shadowsocks/v2ray-plugin/releases)    
+[Plugin Download](https://github.com/teddysun/v2ray-plugin-android/releases/tag/v1.3.3)    
 The config on Windows:
 
 ![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/ss.jpg)
