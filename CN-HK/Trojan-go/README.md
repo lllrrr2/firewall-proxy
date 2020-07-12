@@ -50,7 +50,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-	    "sni": "your_domain.com",    #修改為你的功能變數名稱
+	"sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     }
 }
@@ -75,7 +75,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-	    "sni": "your_domain.com",    #修改為你的功能變數名稱
+	"sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
     "websocket": {
@@ -105,7 +105,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.crt",
         "key": "/etc/trojan-go/server.key",
-	    "sni": "your_domain.com",    #修改為你的功能變數名稱
+	"sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
     "websocket": {
