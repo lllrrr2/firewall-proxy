@@ -81,7 +81,7 @@ vim /etc/trojan-go/config.json
     "websocket": {
     "enabled": true,
     "path": "/your_path",  #modify to your path
-    "hostname": "your_domain.com"   #modify to your domain
+    "host": "your_domain.com"   #modify to your domain
     }
 }
 ```
@@ -111,7 +111,7 @@ vim /etc/trojan-go/config.json
     "websocket": {
     "enabled": true,
     "path": "/your_path",  #modify to your path
-    "hostname": "your_domain.com"   #modify to your domain
+    "host": "your_domain.com"   #modify to your domain
     },
     "shadowsocks": {
     "enabled": true,
@@ -236,7 +236,7 @@ Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releas
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "hostname": "your_domain.com"  
+    "host": "your_domain.com"  
     }
 }
 ```
@@ -271,7 +271,7 @@ Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releas
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "hostname": "your_domain.com"  
+    "host": "your_domain.com"  
     },
     "shadowsocks": {
     "enabled": true,

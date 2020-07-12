@@ -81,7 +81,7 @@ vim /etc/trojan-go/config.json
     "websocket": {
     "enabled": true,
     "path": "/your_path",  #修改為你設定的路徑
-    "hostname": "your_domain.com"   #修改為你的功能變數名稱
+    "host": "your_domain.com"   #修改為你的功能變數名稱
     }
 }
 ```
@@ -111,7 +111,7 @@ vim /etc/trojan-go/config.json
     "websocket": {
     "enabled": true,
     "path": "/your_path",  #修改為你設定的路徑
-    "hostname": "your_domain.com"   #修改為你的功能變數名稱
+    "host": "your_domain.com"   #修改為你的功能變數名稱
     },
     "shadowsocks": {
     "enabled": true,
@@ -236,7 +236,7 @@ PC平臺 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "hostname": "your_domain.com"  
+    "host": "your_domain.com"  
     }
 }
 ```
@@ -271,7 +271,7 @@ PC平臺 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "hostname": "your_domain.com"  
+    "host": "your_domain.com"  
     },
     "shadowsocks": {
     "enabled": true,
