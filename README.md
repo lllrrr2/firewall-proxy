@@ -22,6 +22,9 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐ V2ray+Websocket+TLS       
 ⭐⭐ Shadowsocks+V2ray plugin    
 # Credit     
+<details>
+<summary>Click to expand </summary>
+
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
@@ -32,5 +35,5 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 - [v2rayN](https://github.com/2dust/v2rayN)      
 - [v2rayNG](https://github.com/2dust/v2rayNG)     
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
-- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
-- [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
+- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)      
+</details>

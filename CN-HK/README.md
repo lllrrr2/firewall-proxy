@@ -35,5 +35,4 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray
 - [v2rayNG](https://github.com/2dust/v2rayNG)     
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
 - [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
-- [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
 </details>
