@@ -18,7 +18,9 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray
 ⭐⭐ Shadowsocks+V2ray plugin    
 # 推薦脚本		
 如果你人覺得麻煩，歡迎使用下面的一鍵脚本。所有代碼已經經過安全審計，可以放心使用		
+
 1.傳統部署：https://github.com/phlinhng/v2ray-tcp-tls-web		
+
 2.Docker部署：https://github.com/h31105/trojan_v2_docker_onekey			
 # 致謝      
 <details>
