@@ -16,7 +16,14 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS       
 ⭐⭐ Shadowsocks+V2ray plugin    
+# 推薦脚本	
+如果你人覺得麻煩，歡迎使用下面的一鍵脚本。所有代碼已經經過安全審計，可以放心使用		
+1.傳統部署：https://github.com/phlinhng/v2ray-tcp-tls-web	
+2.Docker部署：https://github.com/h31105/trojan_v2_docker_onekey		
 # 致謝      
+<details>
+<summary>點擊展開 </summary>
+
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
@@ -29,3 +36,4 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
 - [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
 - [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
+</details>

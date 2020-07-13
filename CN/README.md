@@ -14,7 +14,14 @@
 ⭐⭐⭐⭐ Trojan             
 ⭐⭐⭐ V2ray+Websocket+TLS        
 ⭐⭐ Shadowsocks+V2ray plugin     
+# 推荐脚本	
+如果你仍觉得麻烦，欢迎使用下面的一键脚本。所有代码已经经过安全审计，可以放心使用
+1.传统部署：https://github.com/phlinhng/v2ray-tcp-tls-web	
+2.Docker部署：https://github.com/h31105/trojan_v2_docker_onekey		
 # 致谢  
+<details>
+<summary>点击展开 </summary>
+
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/clowwindy/shadowsocks-libev/tree/master)      
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
@@ -25,5 +32,5 @@
 - [v2rayN](https://github.com/2dust/v2rayN)      
 - [v2rayNG](https://github.com/2dust/v2rayNG)     
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
-- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)     
-- [simple-obfs](https://github.com/shadowsocks/simple-obfs)   
+- [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)       
+</details>
