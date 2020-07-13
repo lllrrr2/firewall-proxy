@@ -236,7 +236,7 @@ PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "host": "your_domain.com"  
+    "hostname": "your_domain.com"  
     }
 }
 ```
@@ -271,7 +271,7 @@ PC平台 ：https://github.com/Trojan-Qt5/Trojan-Qt5/releases
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "host": "your_domain.com"  
+    "hostname": "your_domain.com"  
     },
     "shadowsocks": {
     "enabled": true,

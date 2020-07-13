@@ -236,7 +236,7 @@ Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releas
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "host": "your_domain.com"  
+    "hostname": "your_domain.com"  
     }
 }
 ```
@@ -271,7 +271,7 @@ Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releas
     "websocket": {
     "enabled": true,
     "path": "/your_path", 
-    "host": "your_domain.com"  
+    "hostname": "your_domain.com"  
     },
     "shadowsocks": {
     "enabled": true,
