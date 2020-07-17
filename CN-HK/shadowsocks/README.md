@@ -45,6 +45,7 @@ cat > /etc/shadowsocks-libev/config.json <<EOF
 "plugin_opts":"server;path=/your_path"   #修改路徑
 }
 EOF
+```
 - 修改 Nginx 配置
 ```bash
 vim /etc/nginx/conf.d/default.conf
