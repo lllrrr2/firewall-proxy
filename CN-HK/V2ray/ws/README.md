@@ -1,8 +1,8 @@
 # 準備工作
-- 你需要有一個自己的功能變數名稱，會正確的設置 `DNS解析` ，如果不會請自行 GOOGLE
-- **請注意配置中後面的備註部分，按要求修改**
+你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**   
 # 配置環境
-Debian 9/10 && Ubuntu 16/18/20
+硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統      
+軟體 : Debian 9/10 && Ubuntu 16/18/20
 # 配置內容
 - 安裝基礎工具  
 ```bash
@@ -85,7 +85,7 @@ server {
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       ##改為你在上面修改的路徑
+    location /your_path {       #改為你在上面修改的路徑
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;
@@ -123,7 +123,7 @@ sysctl -p
 # 更新軟體
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
 
-# 客戶端配置
+# 客戶端
 
 ![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/1.jpg)
 

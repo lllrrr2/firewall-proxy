@@ -2,7 +2,8 @@
 - You need correctly appoint your Domain to your Server IP, and DO NOT open **CDN service** at first
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**
 # Build Environment
-Debian 9/10 && Ubuntu 16/18/20
+Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
+Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
@@ -18,9 +19,9 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/nginx && mkdir /etc/nginx/conf.d
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
 ```
-- Install Docker && && Nginx V2ray
+- Install Docker && Nginx && V2ray
 ```bash
 wget -qO- get.docker.com | bash
 docker pull nginx
@@ -71,7 +72,7 @@ vim /etc/nginx/conf.d/default.conf
 ```bash
 server {
     listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/nginx/conf.d/server.crt;  
+    ssl_certificate       /etc/nginx/conf.d/server.pem;  
     ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
@@ -100,7 +101,6 @@ server {
     server_name ip.ip.ip.ip;    #modify to your server IP address
     return 301 https://your_domain.com$request_uri;    #modify "your_domain.com" to your domain
 }
-
 server {
     listen 0.0.0.0:80;
     listen [::]:80;

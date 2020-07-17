@@ -1,8 +1,8 @@
 # 准备工作
-- 你需要有一个自己的域名，会正确的设置 `DNS解析` ，如果不会请自行 GOOGLE
-- **请注意配置中后面的备注部分，按要求修改**
+你需要拥有一个自己的**域名**，并**已经将域名解析至你的服务器**   
 # 配置环境
-Debian 9/10 && Ubuntu 16/18/20
+硬件 : 内存 ≧ 512M 储存 ≧ 5G | 64位系统      
+软件 : Debian 9/10 && Ubuntu 16/18/20
 # 配置内容
 - 安装基础工具  
 ```bash
@@ -85,7 +85,7 @@ server {
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       ##改为你在上面修改的路径
+    location /your_path {       #改为你在上面修改的路径
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;
@@ -123,7 +123,7 @@ sysctl -p
 # 更新软件
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
-# 客户端配置
+# 客户端
 
 ![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/1.jpg)
 

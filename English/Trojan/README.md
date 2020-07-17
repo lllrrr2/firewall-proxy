@@ -2,7 +2,8 @@
 - You need correctly appoint your Domain to your Server IP, and DO NOT open CDN service at first        
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**      
 # Build Environment 
-Debian 9/10 && Ubuntu 16/18/20        
+Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
+Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
@@ -18,7 +19,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d yourdomain.com -k ec-256
 mkdir /etc/trojan
-acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.crt --key-file /etc/trojan/server.key --ecc
+acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.pem --key-file /etc/trojan/server.key --ecc
 ```
 - install Docker && Nginx && Trojan
 ```bash
@@ -44,7 +45,7 @@ Paste config files below
     ],
     "log_level": 1,
     "ssl": {
-        "cert": "/etc/trojan/server.crt",
+        "cert": "/etc/trojan/server.pem",
         "key": "/etc/trojan/server.key",
         "key_password": "",
         "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",
