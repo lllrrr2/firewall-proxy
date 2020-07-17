@@ -1,5 +1,6 @@
 # Build Environment
 Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
+
 Software : Debian 9/10 && Ubuntu 16/18/20
 # Config
 - update system

@@ -3,6 +3,7 @@
 - **Please pay attention to the marks on each line of the config files, and modify them as requested**    	
 ## Build Environment	
 Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
+
 Software : Debian 9/10 && Ubuntu 16/18/20
 ## Content 
 - install basic tools   
