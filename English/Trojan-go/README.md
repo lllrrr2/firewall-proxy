@@ -20,7 +20,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/trojan-go
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.crt --key-file /etc/trojan-go/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/trojan-go/server.pem --key-file /etc/trojan-go/server.key --ecc
 ```
 - install Docker && Nginx && Trojan    
 ```bash
@@ -50,7 +50,7 @@ vim /etc/trojan-go/config.json
     "ssl": {
         "verify": true,
         "verify_hostname": true,
-        "cert": "/etc/trojan-go/server.crt",
+        "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
@@ -75,7 +75,7 @@ vim /etc/trojan-go/config.json
     "ssl": {
         "verify": true,
         "verify_hostname": true,
-        "cert": "/etc/trojan-go/server.crt",
+        "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 
@@ -105,7 +105,7 @@ vim /etc/trojan-go/config.json
     "ssl": {
         "verify": true,
         "verify_hostname": true,
-        "cert": "/etc/trojan-go/server.crt",
+        "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
 	"sni": "your_domain.com",    #modify to your domain
         "fallback_port": 3000 

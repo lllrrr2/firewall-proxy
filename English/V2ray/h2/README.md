@@ -20,7 +20,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/caddy
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/caddy/server.pem --key-file /etc/caddy/server.key --ecc
 ```
 - Install Docker && V2ray && Caddy
 ```bash
@@ -127,6 +127,6 @@ Configuraton is like below:
 Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 
 # Q && A
 - Q : Why not use Nginx or Apache?      
-A : Because Nginx and Apache don't support reverse proxy for HTTP2    
+A : Because Nginx don't support reverse proxy for HTTP2, and Apache is too large to use it only for proxying your traffic    
 - Q : Why not use Caddy2?     
 A : Because Caddy2 is too complex to use, many things changed and less docs than Caddy1, I still need to wait until the official provide more detailed docs   

@@ -2,7 +2,7 @@
 本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
 所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
-- Brook (无需域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook
+- Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook
 - Shadowsocks+V2ray plugin（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
 - V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
 - V2ray+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
@@ -13,11 +13,11 @@
 由于互联网上关于此的教程数以万计，因此**如果你不会请自行学习**，教程中不再赘述基础知识
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
-⭐⭐⭐⭐⭐ Trojan             
+⭐⭐⭐⭐⭐ Trojan         
+⭐⭐⭐⭐ Brook    	
 ⭐⭐⭐⭐ V2ray+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
 ⭐⭐⭐ V2ray+HTTP2+TLS       
-⭐⭐⭐ Brook
 # 推荐脚本	
 如果你仍觉得麻烦，欢迎使用下面的一键脚本。所有代码已经经过安全审计，可以放心使用		
 
@@ -30,8 +30,7 @@
 
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)    
-- [Brook](https://github.com/txthinking/brook)			
-- [Nami](https://github.com/txthinking/nami)		  
+- [Brook](https://github.com/txthinking/brook)				  
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
 - [Trojan](https://github.com/trojan-gfw/trojan)       
 - [Trojan-GO](https://github.com/p4gefau1t/trojan-go)              

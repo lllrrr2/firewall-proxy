@@ -19,7 +19,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/nginx && mkdir /etc/nginx/conf.d
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
 ```
 - 安裝 Docker && Nginx && V2ray  
 ```bash
@@ -72,7 +72,7 @@ vim /etc/nginx/conf.d/default.conf
 ```bash
 server {
     listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/nginx/conf.d/server.crt;  
+    ssl_certificate       /etc/nginx/conf.d/server.pem;  
     ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;

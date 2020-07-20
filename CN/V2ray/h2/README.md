@@ -19,7 +19,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir /etc/caddy
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.crt --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/caddy/server.pem --key-file /etc/caddy/server.key --ecc
 ```
 - 安装 Docker && V2ray && Caddy
 ```bash
@@ -127,6 +127,6 @@ Windows系统: [点击下载](https://github.com/2dust/v2rayN/releases)
 Android系统: [点击下载](https://github.com/2dust/v2rayNG/releases) 
 # Q && A
 - Q : 为什么不用 Nginx 或 Apache？     
-A : 因为上述两个软件不支持反向代理 HTTP2 流量      
+A : 因为 Nginx 不支持反向代理 HTTP2 流量, Apache 安装配置很复杂，暂时不予考虑      
 - Q : 为什么不用 Caddy2？     
 A : 因为 Caddy2 目前仍在开发阶段，配置复杂且官方文档很模糊，等待官方文档丰富之后再切换使用
