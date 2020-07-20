@@ -14,7 +14,7 @@
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐ Brook    	
+⭐⭐⭐⭐ Brook      
 ⭐⭐⭐⭐ V2ray+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
 ⭐⭐⭐ V2ray+HTTP2+TLS       
