@@ -19,7 +19,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d yourdomain.com -k ec-256
 mkdir /etc/trojan
-acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.crt --key-file /etc/trojan/server.key --ecc
+acme.sh --installcert -d yourdomain.com --fullchain-file /etc/trojan/server.pem --key-file /etc/trojan/server.key --ecc
 ```
 - 安装 Docker && Nginx && Trojan
 ```bash
@@ -45,7 +45,7 @@ vim /etc/trojan/config.json
     ],
     "log_level": 1,
     "ssl": {
-        "cert": "/etc/trojan/server.crt",
+        "cert": "/etc/trojan/server.pem",
         "key": "/etc/trojan/server.key",
         "key_password": "",
         "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",

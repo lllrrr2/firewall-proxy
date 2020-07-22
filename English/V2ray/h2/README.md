@@ -25,9 +25,10 @@ acme.sh --installcert -d your_domain.com --fullchain-file /etc/caddy/server.pem 
 - Install Docker && V2ray && Caddy
 ```bash
 wget -qO- get.docker.com | bash
-wget -qO- https://getcaddy.com | bash -s personal
 docker pull teddysun/v2ray
 docker pull containrrr/watchtower
+wget https://github.com/charlieethan/firewall-proxy/releases/download/1.0.5/caddy
+chmod +x caddy && mv caddy /usr/local/bin
 ```
 - modify config file 
 ```bash
