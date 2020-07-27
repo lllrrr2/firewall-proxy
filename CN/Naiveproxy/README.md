@@ -80,7 +80,7 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # 客户端
-**目前没有移动客户端支持，你只能在电脑上使用！**		
+**目前没有移动客户端支持，你只能在电脑上使用！**		  
 Windows && Linux && MacOS : https://github.com/klzgrad/naiveproxy/releases/latest		
 
 将 config.json 改为如下格式:		
