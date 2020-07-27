@@ -25,7 +25,7 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐⭐ Brook    
 ⭐⭐⭐⭐ V2ray+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ V2ray+HTTP2+TLS   	
+⭐⭐⭐ V2ray+HTTP2+TLS   
 ⭐⭐⭐ Naiveproxy		   
 # Credit     
 <details>
