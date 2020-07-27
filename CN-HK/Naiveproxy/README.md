@@ -15,7 +15,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1/caddy
 chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
 ```
-- 下載網站範本	
+- 下載網站範本	  
 **我準備了10個偽裝網站範本，這裏只是一個示例，你可以將 `1.zip` 改為 `2~10.zip`**		
 ```bash
 mkdir -p /var/www/html && cd /var/www/html
