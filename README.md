@@ -5,6 +5,7 @@ But whether works in your country, you need to try it one by one
 All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn something more about it    
 # Content
 - Brook (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Brook    	
+- Naiveproxy (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Naiveproxy			
 - Shadowsocks+V2ray plugin（Need a domain）：
 https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks    	
 - V2ray+Websocket+TLS (Need a domain）：   
@@ -24,7 +25,8 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 ⭐⭐⭐⭐ Brook    
 ⭐⭐⭐⭐ V2ray+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ V2ray+HTTP2+TLS      
+⭐⭐⭐ V2ray+HTTP2+TLS   	
+⭐⭐⭐ Naiveproxy		   
 # Credit     
 <details>
 <summary>Click to expand </summary>
@@ -32,6 +34,7 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)      
 - [Brook](https://github.com/txthinking/brook)					
+- [Naiveproxy](https://github.com/klzgrad/naiveproxy)		
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
 - [Trojan](https://github.com/trojan-gfw/trojan)       
 - [Trojan-GO](https://github.com/p4gefau1t/trojan-go)              

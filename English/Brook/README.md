@@ -94,6 +94,6 @@ Using this config method,**watchtower** can auto detect and update your software
 # Client
 - Android 6.0+ && Windows 7+: https://github.com/txthinking/brook/releases          
 
-A example of the config:
+An example of the config:
 
 ![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/3.jpg)

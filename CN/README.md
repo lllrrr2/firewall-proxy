@@ -2,7 +2,8 @@
 本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
 所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
-- Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook
+- Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook  		
+- Naiveproxy (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Naiveproxy		
 - Shadowsocks+V2ray plugin（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
 - V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
 - V2ray+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
@@ -18,6 +19,7 @@
 ⭐⭐⭐⭐ V2ray+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
 ⭐⭐⭐ V2ray+HTTP2+TLS       
+⭐⭐⭐ Naiveproxy		   
 # 推荐脚本	
 如果你仍觉得麻烦，欢迎使用下面的一键脚本。所有代码已经经过安全审计，可以放心使用		
 
@@ -31,6 +33,7 @@
 - [@teddysun](https://hub.docker.com/u/teddysun)    
 - [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)    
 - [Brook](https://github.com/txthinking/brook)				  
+- [Naiveproxy](https://github.com/klzgrad/naiveproxy)		
 - [V2ray(V2fly)](https://github.com/v2fly/v2ray-core)         
 - [Trojan](https://github.com/trojan-gfw/trojan)       
 - [Trojan-GO](https://github.com/p4gefau1t/trojan-go)              
