@@ -16,7 +16,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1/caddy
 chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
 ```
-- get HTML Tamplates	
+- get HTML Tamplates	  
 **I prepared 10 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~10.zip`**		
 ```bash
 mkdir -p /var/www/html && cd /var/www/html
@@ -81,7 +81,7 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # Client
-**There is no Android && iOS support, only PC have software to use!**		
+**There is no Android && iOS support, only PC have software to use!**		  
 Windows && Linux && MacOS : https://github.com/klzgrad/naiveproxy/releases/latest		
 
 An example of the config:	
