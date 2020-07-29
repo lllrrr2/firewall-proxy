@@ -173,7 +173,7 @@ sysctl -p
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
 ## 客户端的使用 
-PC平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/1.4.0/Trojan-Qt5.7z)			   
+PC平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)			   
 安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
 
 **移动版推荐配置如下 ：**		

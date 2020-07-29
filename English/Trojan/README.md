@@ -129,4 +129,4 @@ Using this config method,**watchtower** can auto detect and update your software
 # Client
 Android 6.0+ ：[Download](https://github.com/trojan-gfw/igniter/releases)                  
 
-Windows 7.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/1.4.0/Trojan-Qt5.7z)   
+Windows 7.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)   
