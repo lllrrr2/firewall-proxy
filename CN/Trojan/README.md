@@ -129,5 +129,5 @@ sudo sysctl -p
 安卓系统 ：[点击下载](https://github.com/trojan-gfw/igniter/releases)          
 > 配置如下： **地址**填你的域名，**端口**填 443 ，**密码**填你刚才设置的密码，其他选项无需更改        
 
-Windows系统 ：[点击下载](https://github.com/Trojan-Qt5/Trojan-Qt5/releases)   
-> 项目地址 & 使用说明 ：https://github.com/TheWanderingCoel/Trojan-Qt5
+Windows系统 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/1.4.0/Trojan-Qt5.7z)   	
+> 项目地址 & 使用说明 ：https://github.com/Trojan-Qt5/Trojan-Qt5/tree/master
