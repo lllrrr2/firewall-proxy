@@ -1,10 +1,10 @@
 # 準備工作
 你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**    
 # 配置環境
-硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統			
+硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統         
 
 軟體 : Debian 9/10 && Ubuntu 16/18/20
-## 配置內容 
+# 配置內容 
 - 升級並安裝必要軟體   
 ```bash
 apt update && apt -y install socat wget vim
@@ -50,7 +50,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
-	"sni": "your_domain.com",    #修改為你的功能變數名稱
+    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     }
 }
@@ -75,7 +75,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
-	"sni": "your_domain.com",    #修改為你的功能變數名稱
+    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
     "websocket": {
@@ -105,7 +105,7 @@ vim /etc/trojan-go/config.json
         "verify_hostname": true,
         "cert": "/etc/trojan-go/server.pem",
         "key": "/etc/trojan-go/server.key",
-	"sni": "your_domain.com",    #修改為你的功能變數名稱
+    "sni": "your_domain.com",    #修改為你的功能變數名稱
         "fallback_port": 3000 
     },
     "websocket": {
@@ -152,9 +152,9 @@ server {
     return 301 https://$host$request_uri;
 }
 server {
-	listen 127.0.0.1:3000;
-	server_name _;
-	return 400;
+    listen 127.0.0.1:3000;
+    server_name _;
+    return 400;
 }
 ```
 - 啟動服務  
@@ -173,10 +173,16 @@ sysctl -p
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
 
 ## 客戶端的使用 
-PC平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)   		
-安卓平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
+安卓平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)         
 
-**移動版推薦配置如下 ：**		
+Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)      
+
+支持 Trojan-Go 的插件 : [插件下載](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases)      
+
+插件的用法 : [文檔](https://qv2ray.net/plugins/usage.html) 
+
+
+**移動版推薦配置如下 ：**     
 <details>
 <summary>對應配置1</summary>
 
@@ -192,7 +198,7 @@ PC平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releas
     ],
     "ssl": {
         "verify": true,
-	"verify_hostname": true,
+    "verify_hostname": true,
         "sni": "your_domain",
         "session_ticket": true,
         "reuse_session": true,
@@ -222,7 +228,7 @@ PC平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releas
     ],
     "ssl": {
         "verify": true,
-	"verify_hostname": true,
+    "verify_hostname": true,
         "sni": "your_domain",
         "session_ticket": true,
         "reuse_session": true,
@@ -257,7 +263,7 @@ PC平臺 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releas
     ],
     "ssl": {
         "verify": true,
-	"verify_hostname": true,
+    "verify_hostname": true,
         "sni": "your_domain",
         "session_ticket": true,
         "reuse_session": true,

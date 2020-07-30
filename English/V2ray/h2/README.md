@@ -118,14 +118,12 @@ sysctl -p
 Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 
 # Client
-Windows 7+: [Download](https://github.com/2dust/v2rayN/releases)    
-Configuraton is like below:   
+Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 	
 
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)	 
 
-![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/2.jpg)
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/getting-started/step2.html)	
 
-
-Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 
 # Q && A
 - Q : Why not use Nginx or Apache?      
 A : Because Nginx don't support reverse proxy for HTTP2, and Apache is too large to use it only for proxying your traffic    

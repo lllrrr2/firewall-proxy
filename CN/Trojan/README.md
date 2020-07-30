@@ -129,4 +129,8 @@ sudo sysctl -p
 安卓系统 ：[点击下载](https://github.com/trojan-gfw/igniter/releases)          
 > 配置如下： **地址**填你的域名，**端口**填 443 ，**密码**填你刚才设置的密码，其他选项无需更改        
 
-Windows系统 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)   	
+Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)			
+
+支持 Trojan 的插件 : [插件下载](https://github.com/Qv2ray/QvPlugin-Trojan/releases) 		
+
+插件的用法 : [文档](https://qv2ray.net/plugins/usage.html)	

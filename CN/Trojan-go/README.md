@@ -173,8 +173,14 @@ sysctl -p
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
 ## 客户端的使用 
-PC平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)			   
-安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
+安卓平台 ：[点击下载](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)         
+
+Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)      
+
+支持 Trojan-Go 的插件 : [插件下载](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases)      
+
+插件的用法 : [文档](https://qv2ray.net/plugins/usage.html) 
+
 
 **移动版推荐配置如下 ：**		
 <details>

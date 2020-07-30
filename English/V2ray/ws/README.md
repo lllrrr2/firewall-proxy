@@ -125,11 +125,8 @@ sysctl -p
 Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 
 # Client
-Windows 7+: [Download](https://github.com/2dust/v2rayN/releases)    
-Configuraton is like below:   
-
-
-![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/1.jpg)
-
-
 Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 
+
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)    
+
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/getting-started/step2.html) 

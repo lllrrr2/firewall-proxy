@@ -129,4 +129,8 @@ Using this config method,**watchtower** can auto detect and update your software
 # Client
 Android 6.0+ ：[Download](https://github.com/trojan-gfw/igniter/releases)                  
 
-Windows 7.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)   
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)	
+
+Plugin to support Trojan in Qv2ray : [Plugin Download](https://github.com/Qv2ray/QvPlugin-Trojan/releases) 		
+
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/plugins/usage.html)	

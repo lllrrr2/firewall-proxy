@@ -80,15 +80,9 @@ sysctl -p
 ```
 # 客户端
 **目前没有移动客户端支持，你只能在电脑上使用！**		  
-Windows && Linux && MacOS : https://github.com/klzgrad/naiveproxy/releases/latest		
 
-将 config.json 改为如下格式:		
-```bash
-{
-  "listen": "socks://127.0.0.1:1080",
-  "proxy": "https://user_name:your_password@your_domain.com",
-  "log": ""
-}
-``` 
+Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)	     
 
-**你可以使用 [SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) 来为浏览器开启代理**
+支持 Naiveproxy 的插件 : [插件下载](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases) 		
+
+插件的用法 : [文档](https://qv2ray.net/plugins/usage.html)	

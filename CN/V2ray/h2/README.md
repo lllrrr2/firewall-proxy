@@ -117,15 +117,12 @@ sysctl -p
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
 # 客户端
+Android系统: [点击下载](https://github.com/2dust/v2rayNG/releases)    
 
-![2](https://github.com/charlieethan/firewall-proxy/blob/master/photos/2.jpg)
+Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)   
 
-**yourdomain**填你的域名 ，**id**和**alterId**填你上面设置的  
-**Path**填上面设置的路径 ，其余部分照抄即可
-# 客户端
-Windows系统: [点击下载](https://github.com/2dust/v2rayN/releases)
+Qv2ray 用法 : [文档](https://qv2ray.net/getting-started/step2.html) 
 
-Android系统: [点击下载](https://github.com/2dust/v2rayNG/releases) 
 # Q && A
 - Q : 为什么不用 Nginx 或 Apache？     
 A : 因为 Nginx 不支持反向代理 HTTP2 流量, Apache 安装配置很复杂，暂时不予考虑      

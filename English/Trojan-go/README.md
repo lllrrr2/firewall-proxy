@@ -175,8 +175,13 @@ sysctl -p
 Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 
 ## Client 
-Windows 7.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)		   
 Android 6.0+ ：[Download](https://github.com/charlieethan/firewall-proxy/releases/download/V0.7.7/Igniter-Go-v0.7.7.apk)			
+
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)	
+
+Plugin to support Trojan-Go in Qv2ray : [Plugin Download](https://github.com/Qv2ray/QvPlugin-Trojan-Go/releases) 		
+
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/plugins/usage.html)		
 
 **Recommend config on Mobile ：**		
 <details>

@@ -1,7 +1,7 @@
 # 準備工作
 你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**    
 # 搭建環境
-硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統			
+硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統     
 
 軟體 : Debian 9/10 && Ubuntu 16/18/20
 # 內容
@@ -10,13 +10,13 @@
 apt update && apt -y install libnss3 wget unzip
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
-- 安裝 Caddy && Naiveproxy	
+- 安裝 Caddy && Naiveproxy  
 ```bash
 wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1/caddy
 chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
 ```
-- 下載網站範本	  
-**我準備了10個偽裝網站範本，這裏只是一個示例，你可以將 `1.zip` 改為 `2~10.zip`**		
+- 下載網站範本    
+**我準備了10個偽裝網站範本，這裏只是一個示例，你可以將 `1.zip` 改為 `2~10.zip`**   
 ```bash
 mkdir -p /var/www/html && cd /var/www/html
 wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip 1.zip 
@@ -79,16 +79,10 @@ bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
 # 客戶端
-**目前沒有移動客戶端支持，你只能在電腦上使用！**		  
-Windows && Linux && MacOS : https://github.com/klzgrad/naiveproxy/releases/latest		
+**目前沒有移動客戶端支持，你只能在電腦上使用！**      
 
-將 config.json 改為如下格式:		
-```bash
-{
-  "listen": "socks://127.0.0.1:1080",
-  "proxy": "https://user_name:your_password@your_domain.com",
-  "log": ""
-}
-``` 
+Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)       
 
-**你可以使用 [SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) 來為流覽器開啟代理**
+支持 Naiveproxy 的插件 : [插件下載](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases)    
+
+插件的用法 : [文檔](https://qv2ray.net/plugins/usage.html) 

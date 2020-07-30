@@ -81,15 +81,9 @@ sysctl -p
 ```
 # Client
 **There is no Android && iOS support, only PC have software to use!**		  
-Windows && Linux && MacOS : https://github.com/klzgrad/naiveproxy/releases/latest		
 
-An example of the config:	
-```bash
-{
-  "listen": "socks://127.0.0.1:1080",
-  "proxy": "https://user_name:your_password@your_domain.com",
-  "log": ""
-}
-``` 
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)	
 
-**This CLI software only listen on your port, you can use [SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) to proxy your browser**
+Plugin to support Naiveproxy in Qv2ray : [Plugin Download](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases) 		
+
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/plugins/usage.html)		

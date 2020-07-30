@@ -1,7 +1,7 @@
 # 準備工作
 你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**    
 # 配置環境
-硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統			
+硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統         
 
 軟體 : Debian 9/10 && Ubuntu 16/18/20
 # 開始部署
@@ -129,4 +129,8 @@ sudo sysctl -p
 安卓系統 ：[點擊下載](https://github.com/trojan-gfw/igniter/releases)          
 > 配置如下： **地址**填你的功能變數名稱，**端口**填 443 ，**密碼**填你剛才設置的密碼，其他選項無需更改        
 
-Windows系統 ：[點擊下載](https://github.com/charlieethan/firewall-proxy/releases/tag/1.4.0)   
+Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)          
+
+支持 Trojan 的插件 : [插件下載](https://github.com/Qv2ray/QvPlugin-Trojan/releases)      
+
+插件的用法 : [文檔](https://qv2ray.net/plugins/usage.html) 
