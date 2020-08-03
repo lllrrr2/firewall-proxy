@@ -17,7 +17,7 @@ wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1/cadd
 chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
 ```
 - get HTML Tamplates	  
-**I prepared 10 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~10.zip`**		
+**I prepared 20 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~20.zip`**		
 ```bash
 mkdir -p /var/www/html && cd /var/www/html
 wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip 1.zip 
