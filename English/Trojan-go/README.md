@@ -132,7 +132,7 @@ vim /etc/nginx/conf.d/default.conf
 **paste the config file below**  
 ```bash
 server {
-    listen 127.0.0.1:80 default_server;
+    listen 127.0.0.1:80;
     server_name your_domain.com;   #modify to your domain
     location / {
         proxy_pass https://your_proxy.com;   #modify to any website URL you want to disguise  

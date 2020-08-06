@@ -130,7 +130,7 @@ vim /etc/nginx/conf.d/default.conf
 **複製下列配置**  
 ```bash
 server {
-    listen 127.0.0.1:80 default_server;
+    listen 127.0.0.1:80;
     server_name your_domain.com;   #修改為你的功能變數名稱
     location / {
         proxy_pass https://your_proxy.com;   #修改為你想偽裝的網站功能變數名稱，例如 https://unsplash.com/  
