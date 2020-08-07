@@ -5,8 +5,9 @@
 - Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook  		
 - Naiveproxy (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Naiveproxy		
 - Shadowsocks+V2ray plugin（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
-- VLess+Tcp+TLS (需要域名）：   
+- VLess+TCP+TLS (需要域名）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless  		
+- VLess+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless-ws     
 - VMess+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
 - VMess+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
 - Trojan（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan      
@@ -17,7 +18,8 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+Tcp+TLS  		    
+⭐⭐⭐⭐⭐ VLess+TCP+TLS  		    
+⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			    
 ⭐⭐⭐⭐ Brook      
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    

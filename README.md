@@ -8,8 +8,10 @@ All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn som
 - Naiveproxy (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Naiveproxy			
 - Shadowsocks+V2ray plugin（Need a domain）：
 https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks    	
-- VLess+Tcp+TLS (Need a domain）：   
+- VLess+TCP+TLS (Need a domain）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/vless  		
+- VLess+Websocket+TLS (Need a domain）：   
+https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/vless-ws         
 - VMess+Websocket+TLS (Need a domain）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/ws         
 - VMess+HTTP2+TLS (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/h2         
@@ -24,7 +26,8 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 # Recommend index 
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+Tcp+TLS  			    
+⭐⭐⭐⭐⭐ VLess+TCP+TLS  			    
+⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			    
 ⭐⭐⭐⭐ Brook    
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    

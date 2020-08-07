@@ -5,10 +5,11 @@
 - Brook (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Brook  		
 - Naiveproxy (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Naiveproxy		
 - Shadowsocks+V2ray plugin（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Shadowsocks  
-- VLess+Tcp+TLS (需要功能變數名稱）：   
+- VLess+TCP+TLS (需要功能變數名稱）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/vless  		
-- V2ray+Websocket+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/ws     
-- V2ray+HTTP2+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/h2         
+- VLess+Websocket+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/vless-ws     
+- VMess+Websocket+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/ws     
+- VMess+HTTP2+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/h2         
 - Trojan（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan      
 - Trojan-GO（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan-go    
 # 注意事項
@@ -17,7 +18,8 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/vless
 # 推薦指數  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+Tcp+TLS  		    
+⭐⭐⭐⭐⭐ VLess+TCP+TLS  		    
+⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			   
 ⭐⭐⭐⭐ Brook      
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
