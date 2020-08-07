@@ -17,7 +17,7 @@ https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+Tcp+TLS  		
+⭐⭐⭐⭐⭐ VLess+Tcp+TLS  		    
 ⭐⭐⭐⭐ Brook      
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
