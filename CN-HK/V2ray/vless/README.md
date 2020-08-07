@@ -7,7 +7,7 @@
 # 配置內容
 - 安裝基礎工具  
 ```bash
-apt update && apt install -y socat wget git vim
+apt update && apt install -y socat wget git vim     
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安裝證書生成腳本  
@@ -18,21 +18,18 @@ source ~/.bashrc
 - 安裝證書  (**your_domain.com** 改為你的功能變數名稱）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/caddy /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/caddy/server.pem --key-file /etc/caddy/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/v2ray
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
 ```
-- 安裝 Docker && V2ray && Caddy
+- 安裝 Docker && Nginx && V2ray 
 ```bash
 wget -qO- get.docker.com | bash
+docker pull nginx
 docker pull teddysun/v2ray
 docker pull containrrr/watchtower
-wget https://github.com/charlieethan/firewall-proxy/releases/download/1.0.5/caddy
-chmod +x caddy && mv caddy /usr/local/bin
 ```
 - 編輯 v2ray 配置 
 ```bash
-cp /etc/caddy/server.pem /etc/v2ray
-cp /etc/caddy/server.key /etc/v2ray
 vim /etc/v2ray/config.json
 ```
 - 複製配置  
@@ -40,36 +37,43 @@ vim /etc/v2ray/config.json
 {
   "inbounds": [
     {
-      "port": "2000",
-      "protocol": "vmess",
+      "port": 443,
+      "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64",  #更改id
-            "alterId": 64  #更改alterID
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
+            "level": 0,
+            "email": "your@email.com"  #更改為你的郵箱
           }
-        ]
+        ],
+        "decryption": "none",
+        "fallback":{
+        "addr": "127.0.0.1",
+        "port": 80
+        }
       },
       "streamSettings": {
-        "network": "h2",
+        "network": "tcp",
         "security": "tls",
-        "httpSettings": {
-          "path": "/your_path",  #更改路徑
-          "host": [
-            "your_domain.com"    #改為你的功能變數名稱
-          ]
+        "tcpSettings": {
+        "type": "none"
         },
         "tlsSettings": {
           "serverName": "your_domain.com",  #改為你的功能變數名稱
+          "allowInsecure": false,
+          "alpn": [
+          "http/1.1"
+          ],
           "certificates": [
             {
               "certificateFile": "/etc/v2ray/server.pem",
               "keyFile": "/etc/v2ray/server.key"
             }
           ]
-        }
-      }
-    }
+       }
+     }
+   }
   ],
   "outbounds": [
     {
@@ -79,31 +83,39 @@ vim /etc/v2ray/config.json
   ]
 }
 ```
-- 修改 Caddy 配置 
+- 修改 Nginx 配置 
 ```bash
-vim /etc/caddy/Caddyfile
+vim /etc/nginx/conf.d/default.conf
 ```
 - 複製配置  
 ```bash
-http://your_domain.com {  #改為你的功能變數名稱
-    redir https://your_domain.com{url}  #改為你的功能變數名稱
+server {
+    listen 127.0.0.1:80;
+    server_name your_domain.com;  #改為你的功能變數名稱
+    location / {
+        proxy_pass https://proxy.com;  #改為你想偽裝的網址
+        proxy_redirect     off;
+        proxy_buffer_size          64k; 
+        proxy_buffers              32 32k; 
+        proxy_busy_buffers_size    128k;  
+    }
 }
-
-https://your_domain.com {  #改為你的功能變數名稱
-    log stdout
-    errors stderr
-    tls /etc/caddy/server.pem /etc/caddy/server.key
-    proxy / https://proxy.com   #改為你想偽裝的網址
-    proxy /mypath https://localhost:2000 {
-    insecure_skip_verify
-    header_upstream Host "your_domain.com"  #改為你的功能變數名稱
-    header_upstream X-Forwarded-Proto "https"
+server {
+    listen 127.0.0.1:80;
+    server_name ip.ip.ip.ip; #改為你伺服器的 IP 地址
+    return 301 https://your_domain.com$request_uri;  #改為你的功能變數名稱
+}
+server {
+    listen 0.0.0.0:80;
+    listen [::]:80;
+    server_name _;
+    return 301 https://$host$request_uri;
 }
 ```
-- 啟動服務  
+- 啟動服務 
 ```bash 
-nohup /usr/local/bin/caddy -conf /etc/caddy/Caddyfile >caddy.log 2<&1 &
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 開啟 BBR 加速 
@@ -121,9 +133,3 @@ Android系統: [點擊下載](https://github.com/2dust/v2rayNG/releases)
 Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)   
 
 Qv2ray 用法 : [文檔](https://qv2ray.net/getting-started/step2.html) 
-
-# Q && A
-- Q : 為什麼不用 Nginx 或 Apache？     
-A : 因為 Nginx 不支持反向代理 HTTP2 流量, Apache 安裝配置很複雜，暫時不予考慮      
-- Q : 為什麼不用 Caddy2？     
-A : 因為 Caddy2 目前仍在開發階段，配置複雜且官方文檔很模糊，等待官方文檔豐富之後再切換使用

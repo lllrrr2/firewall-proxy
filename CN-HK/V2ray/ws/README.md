@@ -18,7 +18,7 @@ source ~/.bashrc
 - 安裝證書  (**your_domain.com** 改為你的功能變數名稱）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /etc/nginx && mkdir /etc/nginx/conf.d
+mkdir -p /etc/nginx/conf.d /etc/v2ray
 acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
 ```
 - 安裝 Docker && Nginx && V2ray  
@@ -30,7 +30,6 @@ docker pull containrrr/watchtower
 ```
 - 編輯 v2ray 配置 
 ```bash
-mkdir /etc/v2ray
 vim /etc/v2ray/config.json
 ```
 - 複製配置  

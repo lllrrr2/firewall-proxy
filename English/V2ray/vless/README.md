@@ -20,7 +20,7 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
 ```
 - Install Docker && Nginx && V2ray
 ```bash
@@ -38,23 +38,43 @@ vim /etc/v2ray/config.json
 {
   "inbounds": [
     {
-      "port": 10000,
-      "protocol": "vmess",
+      "port": 443,
+      "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    # modify UUID,you can generate one from https://www.uuidgenerator.net/
-            "alterId": 60     #modify alterID,please keep the number between 0~300
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  # modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "level": 0,
+            "email": "your@email.com"  # modify to your email
           }
-        ]
+        ],
+        "decryption": "none",
+        "fallback":{
+        "addr": "127.0.0.1",
+        "port": 80
+        }
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-        "path": "/your_path"   #modify path
-        }
-      }
-    }
+        "network": "tcp",
+        "security": "tls",
+        "tcpSettings": {
+        "type": "none"
+        },
+        "tlsSettings": {
+          "serverName": "your_domain.com",  #modify "your_domain.com" to your domain
+          "allowInsecure": false,
+          "alpn": [
+          "http/1.1"
+          ],
+          "certificates": [
+            {
+              "certificateFile": "/etc/v2ray/server.pem",
+              "keyFile": "/etc/v2ray/server.key"
+            }
+          ]
+       }
+     }
+   }
   ],
   "outbounds": [
     {
@@ -71,42 +91,27 @@ vim /etc/nginx/conf.d/default.conf
 - copy your config  
 ```bash
 server {
-    listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/nginx/conf.d/server.pem;  
-    ssl_certificate_key   /etc/nginx/conf.d/server.key;
-    ssl_protocols         TLSv1.2 TLSv1.3;                    
-    ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
-    
-    server_name  your_domain.com;    #modify "your_domain.com" to your domain
+    listen 127.0.0.1:80;
+    server_name your_domain.com;  #modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;     #modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;  #modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
-        proxy_busy_buffers_size    128k;
-     }
-
-    location /your_path {       ##modify the path you modified above 
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:10000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $http_host;
-        proxy_read_timeout 300s;
+        proxy_busy_buffers_size    128k;  
     }
 }
 server {
     listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;    #modify to your server IP address
-    return 301 https://your_domain.com$request_uri;    #modify "your_domain.com" to your domain
+    server_name ip.ip.ip.ip;  #modify to your server IP address
+    return 301 https://your_domain.com$request_uri;  #modify "your_domain.com" to your domain
 }
 server {
     listen 0.0.0.0:80;
     listen [::]:80;
     server_name _;
     return 301 https://$host$request_uri;
-  }
+}
 ```
 - Start Service  
 ```bash 

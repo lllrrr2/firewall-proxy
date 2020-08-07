@@ -5,8 +5,10 @@
 - Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook  		
 - Naiveproxy (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Naiveproxy		
 - Shadowsocks+V2ray plugin（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
-- V2ray+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
-- V2ray+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
+- VLess+Tcp+TLS (需要域名）：   
+https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless  		
+- VMess+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
+- VMess+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
 - Trojan（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan      
 - Trojan-GO（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan-go    
 # 注意事项
@@ -15,10 +17,11 @@
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
+⭐⭐⭐⭐⭐ VLess+Tcp+TLS  		
 ⭐⭐⭐⭐ Brook      
-⭐⭐⭐⭐ V2ray+Websocket+TLS     
+⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ V2ray+HTTP2+TLS       
+⭐⭐⭐ VMess+HTTP2+TLS       
 ⭐⭐⭐ Naiveproxy		   
 # 推荐脚本	
 如果你仍觉得麻烦，欢迎使用下面的一键脚本。所有代码已经经过安全审计，可以放心使用		

@@ -8,9 +8,11 @@ All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn som
 - Naiveproxy (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Naiveproxy			
 - Shadowsocks+V2ray plugin（Need a domain）：
 https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks    	
-- V2ray+Websocket+TLS (Need a domain）：   
+- VLess+Tcp+TLS (Need a domain）：   
+https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/vless  		
+- VMess+Websocket+TLS (Need a domain）：   
 https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/ws         
-- V2ray+HTTP2+TLS (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/h2         
+- VMess+HTTP2+TLS (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/h2         
 - Trojan（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan   
 - Trojan-GO（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan-go   
 # Precautions
@@ -22,10 +24,11 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 # Recommend index 
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
+⭐⭐⭐⭐⭐ VLess+Tcp+TLS  			
 ⭐⭐⭐⭐ Brook    
-⭐⭐⭐⭐ V2ray+Websocket+TLS     
+⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ V2ray+HTTP2+TLS   
+⭐⭐⭐ VMess+HTTP2+TLS   
 ⭐⭐⭐ Naiveproxy		   
 # Credit     
 <details>

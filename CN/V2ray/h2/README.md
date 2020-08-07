@@ -18,7 +18,7 @@ source ~/.bashrc
 - 安装证书  (**your_domain.com** 改为你的域名）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir /etc/caddy
+mkdir -p /etc/caddy /etc/v2ray
 acme.sh --installcert -d your_domain.com --fullchain-file /etc/caddy/server.pem --key-file /etc/caddy/server.key --ecc
 ```
 - 安装 Docker && V2ray && Caddy
@@ -31,7 +31,6 @@ chmod +x caddy && mv caddy /usr/local/bin
 ```
 - 编辑 v2ray 配置 
 ```bash
-mkdir /etc/v2ray
 cp /etc/caddy/server.pem /etc/v2ray
 cp /etc/caddy/server.key /etc/v2ray
 vim /etc/v2ray/config.json

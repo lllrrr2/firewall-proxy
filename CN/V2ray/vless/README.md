@@ -7,7 +7,7 @@
 # 配置内容
 - 安装基础工具  
 ```bash
-apt update && apt install -y socat wget git vim
+apt update && apt install -y socat wget git vim     
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装证书生成脚本  
@@ -19,9 +19,9 @@ source ~/.bashrc
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
 ```
-- 安装 Docker && Nginx && V2ray  
+- 安装 Docker && Nginx && V2ray 
 ```bash
 wget -qO- get.docker.com | bash
 docker pull nginx
@@ -37,23 +37,43 @@ vim /etc/v2ray/config.json
 {
   "inbounds": [
     {
-      "port": 10000,
-      "protocol": "vmess",
+      "port": 443,
+      "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    #更改id
-            "alterId": 60     #更改alterID
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
+            "level": 0,
+            "email": "your@email.com"  #更改为你的邮箱
           }
-        ]
+        ],
+        "decryption": "none",
+        "fallback":{
+        "addr": "127.0.0.1",
+        "port": 80
+        }
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-        "path": "/your_path"   #更改路径
-        }
-      }
-    }
+        "network": "tcp",
+        "security": "tls",
+        "tcpSettings": {
+        "type": "none"
+        },
+        "tlsSettings": {
+          "serverName": "your_domain.com",  #改为你的域名
+          "allowInsecure": false,
+          "alpn": [
+          "http/1.1"
+          ],
+          "certificates": [
+            {
+              "certificateFile": "/etc/v2ray/server.pem",
+              "keyFile": "/etc/v2ray/server.key"
+            }
+          ]
+       }
+     }
+   }
   ],
   "outbounds": [
     {
@@ -70,45 +90,29 @@ vim /etc/nginx/conf.d/default.conf
 - 复制配置  
 ```bash
 server {
-    listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/nginx/conf.d/server.pem;  
-    ssl_certificate_key   /etc/nginx/conf.d/server.key;
-    ssl_protocols         TLSv1.2 TLSv1.3;                    
-    ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
-   
-    server_name  your_domain.com;    #改为你的域名
+    listen 127.0.0.1:80;
+    server_name your_domain.com;  #改为你的域名
     location / {
-        proxy_pass https://proxy.com;     #改为你想伪装的网址
+        proxy_pass https://proxy.com;  #改为你想伪装的网址
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
-        proxy_busy_buffers_size    128k;
-     }
-
-    location /your_path {       #改为你在上面修改的路径
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:10000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $http_host;
-        proxy_read_timeout 300s;
+        proxy_busy_buffers_size    128k;  
     }
 }
 server {
     listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;    #改为你服务器的 IP 地址
-    return 301 https://your_domain.com$request_uri;    #改为你的域名
+    server_name ip.ip.ip.ip; #改为你服务器的 IP 地址
+    return 301 https://your_domain.com$request_uri;  #改为你的域名
 }
-
 server {
     listen 0.0.0.0:80;
     listen [::]:80;
     server_name _;
     return 301 https://$host$request_uri;
-  }
+}
 ```
-- 启动服务  
+- 启动服务 
 ```bash 
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
