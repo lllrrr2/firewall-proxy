@@ -24,7 +24,7 @@ All the servive build in this premise,**Because it's so easy to learn, I won't i
 # Recommend index 
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+Tcp+TLS  			
+⭐⭐⭐⭐⭐ VLess+Tcp+TLS  			    
 ⭐⭐⭐⭐ Brook    
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
 ⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
