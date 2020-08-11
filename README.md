@@ -16,7 +16,7 @@ All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn som
 - You need set a record on your Nameservice Provider to Point your Domain to your Server IP address before building the service	
 # Recommend index 
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
-⭐⭐⭐⭐⭐⭐ VLess	    	
+⭐⭐⭐⭐⭐⭐ VLess	    	  
 ⭐⭐⭐⭐⭐ Trojan         
 ⭐⭐⭐⭐⭐ Naiveproxy		   	    
 ⭐⭐⭐⭐ Brook    
