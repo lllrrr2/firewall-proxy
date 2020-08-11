@@ -4,35 +4,27 @@ This project mission is to provide tutorials to let you across the firewall in y
 But whether works in your country, you need to try it one by one     
 All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn something more about it    
 # Content
-- Brook (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Brook    	
-- Naiveproxy (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Naiveproxy			
-- Shadowsocks+V2ray plugin（Need a domain）：
-https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks    	
-- VLess+TCP+TLS (Need a domain）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/vless  		
-- VLess+Websocket+TLS (Need a domain）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/vless-ws         
-- VMess+Websocket+TLS (Need a domain）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/ws         
-- VMess+HTTP2+TLS (Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/h2         
-- Trojan（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan   
-- Trojan-GO（Need a domain）：https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan-go   
+- [Brook](https://github.com/charlieethan/firewall-proxy/tree/master/English/Brook)  	
+- [VLess](https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/VLess)		
+- [VMess](https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/VMess)		
+- [Trojan](https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan)   	
+- [Trojan-GO](https://github.com/charlieethan/firewall-proxy/tree/master/English/Trojan-go)   	
+- [Naiveproxy](https://github.com/charlieethan/firewall-proxy/tree/master/English/Naiveproxy)					
+- [Shadowsocks](https://github.com/charlieethan/firewall-proxy/tree/master/English/Shadowsocks)    	
 # Precautions
-- The project remarks "Need a domain" **need you have a domain** to build the service   
- It's necessary, **If you do not have, please buy one**    
-- If you choose **"Need a domain"** solution, you need a little knowledge about     
-**"How to set a record on your Nameservice Provider to Point your Domain to your Server IP address"**   
-All the servive build in this premise,**Because it's so easy to learn, I won't introduce again in the Tutor** 
+- You need have a domain to build the service. It's necessary, **If you do not have, please buy one**    
+- You need set a record on your Nameservice Provider to Point your Domain to your Server IP address before building the service	
 # Recommend index 
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
+⭐⭐⭐⭐⭐⭐ VLess	    	
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+TCP+TLS  			    
-⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			    
+⭐⭐⭐⭐⭐ Naiveproxy		   	    
 ⭐⭐⭐⭐ Brook    
+⭐⭐⭐⭐ Shadowsocks    
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
-⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ VMess+HTTP2+TLS   
-⭐⭐⭐ Naiveproxy		   
+⭐⭐⭐ VMess+HTTP2+TLS   		
+
+**Attention: There's NO mobile client support for Naiveproxy, you must decide whether to use it**
 # Credit     
 <details>
 <summary>Click to expand </summary>

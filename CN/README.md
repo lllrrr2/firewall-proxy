@@ -2,29 +2,29 @@
 本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
 所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
-- Brook (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook  		
-- Naiveproxy (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Naiveproxy		
-- Shadowsocks+V2ray plugin（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks  
-- VLess+TCP+TLS (需要域名）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless  		
-- VLess+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/vless-ws     
-- VMess+Websocket+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/ws     
-- VMess+HTTP2+TLS (需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/h2         
-- Trojan（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan      
-- Trojan-GO（需要域名）：https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan-go    
+- [Brook](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook)  		
+- [VLess](https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/VLess)			
+- [VMess](https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/VMess)		
+- [Trojan](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan)      
+- [Trojan-GO](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Trojan-go)    	
+- [Naiveproxy](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Naiveproxy) 		
+- [Shadowsocks](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Shadowsocks)  	
+
 # 注意事项
-- **需要域名** 的搭建方式需要你 **拥有一个自己的域名**并会**正确设置解析记录**     
+- 你需要拥有一个域名并在搭建服务前将此域名解析至你的服务器IP		    
 由于互联网上关于此的教程数以万计，因此**如果你不会请自行学习**，教程中不再赘述基础知识
 # 推荐指数  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
+⭐⭐⭐⭐⭐⭐ VLess	    	
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+TCP+TLS  		    
-⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			    
-⭐⭐⭐⭐ Brook      
+⭐⭐⭐⭐⭐ Naiveproxy		   	    
+⭐⭐⭐⭐ Brook    
+⭐⭐⭐⭐ Shadowsocks    
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
-⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ VMess+HTTP2+TLS       
-⭐⭐⭐ Naiveproxy		   
+⭐⭐⭐ VMess+HTTP2+TLS   			
+
+**注意：Naiveproxy 目前没有移动客户端支持，请自行决定是否使用。**		
+**如果你不需要使用CDN,VLESS协议推荐使用VLESS+TCP+TLS的方案**
 # 推荐脚本	
 如果你仍觉得麻烦，欢迎使用下面的一键脚本。所有代码已经经过安全审计，可以放心使用		
 

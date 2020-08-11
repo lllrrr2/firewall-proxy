@@ -2,29 +2,29 @@
 本項目旨在提供幾個主流的代理軟體搭建教程，讓你獲得自由的上網體驗    
 所有搭建方式均採用 [Docker](https://hub.docker.com/) , 方便寫入和升級     
 # 內容
-- Brook (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Brook  		
-- Naiveproxy (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Naiveproxy		
-- Shadowsocks+V2ray plugin（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Shadowsocks  
-- VLess+TCP+TLS (需要功能變數名稱）：   
-https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/vless  		
-- VLess+Websocket+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/vless-ws     
-- VMess+Websocket+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/ws     
-- VMess+HTTP2+TLS (需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/h2         
-- Trojan（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan      
-- Trojan-GO（需要功能變數名稱）：https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan-go    
+- [Brook](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Brook)  		
+- [VLess](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/VLess)			
+- [VMess](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/V2ray/VMess)		
+- [Trojan](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan)      
+- [Trojan-GO](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Trojan-go)    	
+- [Naiveproxy](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Naiveproxy) 		
+- [Shadowsocks](https://github.com/charlieethan/firewall-proxy/tree/master/CN-HK/Shadowsocks)  	
+
 # 注意事項
-- **需要功能變數名稱** 的搭建方式需要你 **擁有一個自己的功能變數名稱**並會**正確設置解析記錄**     
+- 你需要擁有一個功能變數名稱並在搭建服務前將此功能變數名稱解析至你的伺服器IP		    
 由於互聯網上關於此的教程數以萬計，因此**如果你不會請自行學習**，教程中不再贅述基礎知識
 # 推薦指數  
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
+⭐⭐⭐⭐⭐⭐ VLess	    	
 ⭐⭐⭐⭐⭐ Trojan         
-⭐⭐⭐⭐⭐ VLess+TCP+TLS  		    
-⭐⭐⭐⭐⭐ VLess+Websocket+TLS  			   
-⭐⭐⭐⭐ Brook      
+⭐⭐⭐⭐⭐ Naiveproxy		   	    
+⭐⭐⭐⭐ Brook    
+⭐⭐⭐⭐ Shadowsocks    
 ⭐⭐⭐⭐ VMess+Websocket+TLS     
-⭐⭐⭐⭐ Shadowsocks+V2ray plugin    
-⭐⭐⭐ VMess+HTTP2+TLS       
-⭐⭐⭐ Naiveproxy		   
+⭐⭐⭐ VMess+HTTP2+TLS   			
+
+**注意：Naiveproxy 目前沒有移動客戶端支持，請自行決定是否使用。**		
+**如果你不需要使用CDN,VLESS協議推薦使用VLESS+TCP+TLS的方案**
 # 推薦腳本	
 如果你仍覺得麻煩，歡迎使用下麵的一鍵腳本。所有代碼已經經過安全審計，可以放心使用		
 
