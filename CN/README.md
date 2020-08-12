@@ -19,7 +19,7 @@
 ⭐⭐⭐⭐⭐ Trojan         
 ⭐⭐⭐⭐⭐ Naiveproxy		   	    
 ⭐⭐⭐⭐ Brook    
-⭐⭐⭐⭐ VMess     			
+⭐⭐⭐⭐ VMess     		  
 ⭐⭐⭐⭐ Shadowsocks    
 
 
