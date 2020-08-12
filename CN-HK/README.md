@@ -19,9 +19,8 @@
 ⭐⭐⭐⭐⭐ Trojan         
 ⭐⭐⭐⭐⭐ Naiveproxy		   	    
 ⭐⭐⭐⭐ Brook    
+⭐⭐⭐⭐ VMess      			
 ⭐⭐⭐⭐ Shadowsocks    
-⭐⭐⭐⭐ VMess+Websocket+TLS     
-⭐⭐⭐ VMess+HTTP2+TLS   			
 
 **注意：Naiveproxy 目前沒有移動客戶端支持，請自行決定是否使用。**		
 **如果你不需要使用CDN,VLESS協議推薦使用VLESS+TCP+TLS的方案**
