@@ -1,0 +1,119 @@
+# Prepare
+- You need correctly appoint your Domain to your Server IP, and DO NOT open **CDN service** at first
+- **Please pay attention to the marks on each line of the config files, and modify them as requested**
+# Build Environment
+Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
+
+Software : Debian 9/10 && Ubuntu 16/18/20
+# Content
+- install basic tools
+```bash
+apt update && apt install -y wget unzip vim    
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+- Install tls-shunt-proxy 
+```bash
+mkdir -p /etc/tsp /etc/v2ray /var/www/html
+wget https://github.com/charlieethan/firewall-proxy/releases/download/0.5.3/tsp && chmod +x tsp
+```
+- Install Docker && V2ray
+```bash
+wget -qO- get.docker.com | bash
+docker pull teddysun/v2ray
+docker pull containrrr/watchtower
+```
+- get HTML Tamplates    
+**I prepared 20 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~20.zip`**   
+```bash
+cd /var/www/html && wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip
+unzip 1.zip && rm -rf 1.zip
+```
+- modify config file 
+```bash
+vim /etc/v2ray/config.json
+```
+- copy your config  
+```bash
+{
+  "inbounds": [
+    {
+      "port": "2000",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", # modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "alterId": 64  #modify alterID,please keep the number between 0~300
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "h2",
+        "security": "none",
+        "httpSettings": {
+          "path": "/your_path",  #modify path
+          "host": [
+            "your_domain.com"  #modify "your_domain.com" to your domain
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}
+```
+- modify config files of tls-shunt-proxy
+```bash
+vim /etc/tsp/config.yaml
+```
+- copy your config  
+```bash
+listen: 0.0.0.0:443
+redirecthttps: 0.0.0.0:80
+inboundbuffersize: 4
+outboundbuffersize: 32
+
+vhosts:
+  - name: your_domain.com  #modify "your_domain.com" to your domain
+    tlsoffloading: true
+    managedcert: true
+    keytype: p256
+    alpn: h2,http/1.1
+    protocols: tls12,tls13
+
+    http:
+      paths:
+        - path: "*"
+          handler: proxyPass
+          args: 127.0.0.1:2000
+
+    default:
+      handler: fileServer
+      args: /var/www/html
+```
+- Start Service  
+```bash 
+cd && nohup ./tsp -config /etc/tsp/config.yaml >tsp.log 2<&1 &
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
+```
+- Start BBR Accelerate (A solotion to decrease network delay from Google) ：
+```bash
+bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
+bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
+sysctl -p
+```
+# For new version Update:
+Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
+
+# Client
+Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 
+
+Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)    
+
+The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/getting-started/step2.html) 
