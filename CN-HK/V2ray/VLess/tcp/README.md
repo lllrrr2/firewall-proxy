@@ -43,8 +43,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
-            "level": 0,
-            "email": "your@email.com"  #更改為你的郵箱
+            "level": 0
           }
         ],
         "decryption": "none",
