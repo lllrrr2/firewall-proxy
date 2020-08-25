@@ -13,7 +13,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 - 安裝 tls-shunt-proxy 
 ```bash
 mkdir -p /etc/tsp /etc/v2ray /var/www/html
-wget https://github.com/charlieethan/firewall-proxy/releases/download/0.5.3/tsp && chmod +x tsp
+wget https://github.com/charlieethan/firewall-proxy/releases/download/0.6.0/tsp && chmod +x tsp
 ```
 - 安裝 Docker && V2ray
 ```bash
