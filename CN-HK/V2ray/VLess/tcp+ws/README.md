@@ -18,8 +18,9 @@ source ~/.bashrc
 - 安裝證書  (**your_domain.com** 改為你的功能變數名稱）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/v2ray/01 /etc/v2ray/02
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/01/server.pem --key-file /etc/v2ray/01/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/02/server.pem --key-file /etc/v2ray/02/server.key --ecc
 ```
 - 安裝 Docker && Nginx && V2ray 
 ```bash
@@ -30,7 +31,7 @@ docker pull containrrr/watchtower
 ```
 - 編輯 v2ray 配置 
 ```bash
-vim /etc/v2ray/config.json
+vim /etc/v2ray/01/config.json
 ```
 - 複製配置  
 ```bash
@@ -50,6 +51,10 @@ vim /etc/v2ray/config.json
         "fallbacks":[
         {
           "dest": 80
+        },
+        {
+          "path": "/your_path",  #更改路徑
+          "dest": 1000
         }
        ]
       },
@@ -74,6 +79,42 @@ vim /etc/v2ray/config.json
        }
      }
    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}
+```
+- 編輯 v2ray 配置 
+```bash
+vim /etc/v2ray/02/config.json
+```
+- 複製配置  
+```bash
+{
+  "inbounds": [
+    {
+      "port": 1000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    #更改id，請與上面一個相同
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+        "path": "/your_path"   #更改路徑，請與上面一個相同
+        }
+      }
+    }
   ],
   "outbounds": [
     {
@@ -113,8 +154,9 @@ server {
 }
 ```
 - 啟動服務 
-```bash 
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+```bash
+docker run --network host --name tcp -v /etc/v2ray/01:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name ws -v /etc/v2ray/02:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
@@ -126,6 +168,9 @@ sysctl -p
 ```
 # 更新軟體
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
+
+# 說明
+在使用這種配置方式後，同一個 UUID 可以同時使用 TCP+TLS 和 Websocket 模式下的 VLess 協議。這意味著如果你的 IP 未被牆，你可以在客戶端使用 TCP+TLS 的模式最大程度跑滿伺服器的帶寬；而如果伺服器 IP 被牆，你不用更換任何伺服器端的配置檔，只需要開啟 CDN 並在客戶端直接使用 Websocket 模式連接即可，十分的方便快捷
 
 # 客戶端
 Android系統: [點擊下載](https://github.com/2dust/v2rayNG/releases)    

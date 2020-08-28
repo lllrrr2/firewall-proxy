@@ -19,8 +19,9 @@ source ~/.bashrc
 - request SSL certificate (modify **your_domain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/v2ray/01 /etc/v2ray/02
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/01/server.pem --key-file /etc/v2ray/01/server.key --ecc
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/02/server.pem --key-file /etc/v2ray/02/server.key --ecc
 ```
 - Install Docker && Nginx && V2ray
 ```bash
@@ -31,7 +32,7 @@ docker pull containrrr/watchtower
 ```
 - modify config file 
 ```bash
-vim /etc/v2ray/config.json
+vim /etc/v2ray/01/config.json
 ```
 - copy your config  
 ```bash
@@ -51,6 +52,10 @@ vim /etc/v2ray/config.json
         "fallbacks":[
         {
           "dest": 80
+        },
+        {
+          "path": "/your_path",  #modify path
+          "dest": 1000
         }
        ]
       },
@@ -75,6 +80,42 @@ vim /etc/v2ray/config.json
        }
      }
    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}
+```
+- modify config file 
+```bash
+vim /etc/v2ray/02/config.json
+```
+- copy your config  
+```bash
+{
+  "inbounds": [
+    {
+      "port": 1000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    # modify UUID,keep it as same as below
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+        "path": "/your_path"   #modify path
+        }
+      }
+    }
   ],
   "outbounds": [
     {
@@ -115,7 +156,8 @@ server {
 ```
 - Start Service  
 ```bash 
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name tcp -v /etc/v2ray/01:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name ws -v /etc/v2ray/02:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
