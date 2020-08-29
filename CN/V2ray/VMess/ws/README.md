@@ -43,7 +43,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    #更改id
-            "alterId": 60     #更改alterID
+            "alterId": 0  #请不要修改，以启用 VMess AEAD，抵抗主动检测
           }
         ]
       },
@@ -100,7 +100,6 @@ server {
     server_name ip.ip.ip.ip;    #改为你服务器的 IP 地址
     return 301 https://your_domain.com$request_uri;    #改为你的域名
 }
-
 server {
     listen 0.0.0.0:80;
     listen [::]:80;

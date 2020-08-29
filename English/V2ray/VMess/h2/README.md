@@ -43,7 +43,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", # modify UUID,you can generate one from https://www.uuidgenerator.net/
-            "alterId": 64  #modify alterID,please keep the number between 0~300
+            "alterId": 0
           }
         ]
       },

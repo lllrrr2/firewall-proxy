@@ -42,7 +42,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", #更改id
-            "alterId": 64  #更改alterID
+            "alterId": 0  #请不要修改，以启用 VMess AEAD，抵抗主动检测
           }
         ]
       },
