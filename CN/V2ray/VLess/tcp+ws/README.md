@@ -20,7 +20,6 @@ source ~/.bashrc
 acme.sh --issue --standalone -d your_domain.com -k ec-256
 mkdir -p /etc/nginx/conf.d /etc/v2ray/01 /etc/v2ray/02
 acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/01/server.pem --key-file /etc/v2ray/01/server.key --ecc
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/02/server.pem --key-file /etc/v2ray/02/server.key --ecc
 ```
 - 安装 Docker && Nginx && V2ray 
 ```bash
@@ -110,6 +109,7 @@ vim /etc/v2ray/02/config.json
       },
       "streamSettings": {
         "network": "ws",
+        "security": "none",
         "wsSettings": {
         "path": "/your_path"   #更改路径，请与上面一个相同
         }
