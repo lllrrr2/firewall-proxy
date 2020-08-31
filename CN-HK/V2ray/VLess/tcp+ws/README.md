@@ -53,7 +53,8 @@ vim /etc/v2ray/01/config.json
         },
         {
           "path": "/your_path",  #更改路徑
-          "dest": 1000
+          "dest": 1000,
+          "xver": 1
         }
        ]
       },
@@ -111,6 +112,7 @@ vim /etc/v2ray/02/config.json
         "network": "ws",
         "security": "none",
         "wsSettings": {
+        "acceptProxyProtocol": true,
         "path": "/your_path"   #更改路徑，請與上面一個相同
         }
       }
