@@ -22,7 +22,7 @@ docker pull teddysun/v2ray
 docker pull containrrr/watchtower
 ```
 - 下载网站模板    
-**我准备了20个伪装网站模板，这里只是一个示例，你可以将 `1.zip` 改为 `2~20.zip`**   
+**我准备了50个伪装网站模板，这里只是一个示例，你可以将 `1.zip` 改为 `2~50.zip`**   
 ```bash
 cd /var/www/html && wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip
 unzip 1.zip && rm -rf 1.zip

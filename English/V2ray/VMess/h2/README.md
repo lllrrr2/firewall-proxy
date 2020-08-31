@@ -23,7 +23,7 @@ docker pull teddysun/v2ray
 docker pull containrrr/watchtower
 ```
 - get HTML Tamplates    
-**I prepared 20 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~20.zip`**   
+**I prepared 50 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~50.zip`**   
 ```bash
 cd /var/www/html && wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip
 unzip 1.zip && rm -rf 1.zip
