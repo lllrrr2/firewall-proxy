@@ -25,7 +25,12 @@ wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.
 - modify config files
 ```bash
 cd && cat > caddy.json <<EOF
-{
+{ 
+  "admin": {"disabled": true},
+  "logging": {
+    "sink": {"writer": {"output": "discard"}},
+    "logs": {"default": {"writer": {"output": "discard"}}}
+  },
   "apps": {
     "http": {
       "servers": {
