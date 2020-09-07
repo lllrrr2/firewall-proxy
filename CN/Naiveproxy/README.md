@@ -1,13 +1,13 @@
-# 准备工作
+## 准备工作
 你需要拥有一个自己的**域名**，并**已经将域名解析至你的服务器**    
-# 搭建环境
+## 搭建环境
 硬件 : 内存 ≧ 512M 储存 ≧ 5G | 64位系统			
 
 软件 : Debian 9/10 && Ubuntu 16/18/20
-# 内容
+## 内容
 - 安装基础工具  
 ```bash
-apt update && apt -y install libnss3 wget unzip
+apt update && apt install -y libnss3 wget unzip
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装 Caddy && Naiveproxy	
@@ -83,7 +83,7 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-# 客户端
+## 客户端
 **目前没有移动客户端支持，你只能在电脑上使用！**		  
 
 Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)	     
@@ -91,3 +91,5 @@ Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/rel
 支持 Naiveproxy 的插件 : [插件下载](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases) 		
 
 插件的用法 : [文档](https://qv2ray.net/plugins/usage.html)	
+## 扩展阅读
+[Naiveproxy+VLess搭建](https://blog.charlieethan.com/index.php/archives/539.html)

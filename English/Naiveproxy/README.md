@@ -5,10 +5,10 @@
 Hardware : RAM ≧ 512M ROM ≧ 5G | 64bit OS Required			
 
 Software : Debian 9/10 && Ubuntu 16/18/20	
-# Config
+## Config
 - install basic tools 
 ```bash
-apt update && apt -y install libnss3 wget unzip
+apt update && apt install -y libnss3 wget unzip
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - get Caddy && Naiveproxy	
@@ -84,7 +84,7 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-# Client
+## Client
 **There is no Android && iOS support, only PC have software to use!**		  
 
 Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)	

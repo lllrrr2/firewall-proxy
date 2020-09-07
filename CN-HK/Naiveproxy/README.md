@@ -1,13 +1,13 @@
-# 準備工作
+## 準備工作
 你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**    
-# 搭建環境
+## 搭建環境
 硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統     
 
 軟體 : Debian 9/10 && Ubuntu 16/18/20
-# 內容
+## 內容
 - 安裝基礎工具  
 ```bash
-apt update && apt -y install libnss3 wget unzip
+apt update && apt install -y libnss3 wget unzip
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安裝 Caddy && Naiveproxy  
@@ -83,7 +83,7 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-# 客戶端
+## 客戶端
 **目前沒有移動客戶端支持，你只能在電腦上使用！**      
 
 Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)       
@@ -91,3 +91,5 @@ Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/rel
 支持 Naiveproxy 的插件 : [插件下載](https://github.com/Qv2ray/QvPlugin-NaiveProxy/releases)    
 
 插件的用法 : [文檔](https://qv2ray.net/plugins/usage.html) 
+## 擴展閲讀
+[Naiveproxy+VLess搭建](https://blog.charlieethan.com/index.php/archives/539.html)
