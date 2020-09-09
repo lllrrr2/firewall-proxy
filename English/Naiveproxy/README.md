@@ -13,7 +13,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - get Caddy && Naiveproxy	
 ```bash
-wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1/caddy
+wget https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
 chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
 ```
 - get HTML Tamplates	  
@@ -28,8 +28,8 @@ cd && cat > caddy.json <<EOF
 { 
   "admin": {"disabled": true},
   "logging": {
-    "sink": {"writer": {"output": "discard"}},
-    "logs": {"default": {"writer": {"output": "discard"}}}
+    "sink": {"writer": {"output": "stdout"}},
+    "logs": {"default": {"writer": {"output": "stdout"}}}
   },
   "apps": {
     "http": {
