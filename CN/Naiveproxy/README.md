@@ -12,18 +12,17 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装 Caddy && Naiveproxy	
 ```bash
-wget https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
-chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
+wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
+chmod +x /usr/local/bin/caddy && setcap cap_net_bind_service=+ep /usr/local/bin/caddy
 ```
 - 下载网站模板	  
 **我准备了50个伪装网站模板，这里只是一个示例，你可以将 `1.zip` 改为 `2~50.zip`**		
 ```bash
-mkdir -p /var/www/html && cd /var/www/html
-wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip 1.zip 
+mkdir -p /var/www/html /etc/caddy && wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - 修改配置
 ```bash
-cd && cat > caddy.json <<EOF
+cat > /etc/caddy/caddy.json <<EOF
 { 
   "admin": {"disabled": true},
   "logging": {
@@ -75,7 +74,7 @@ EOF
 ```
 - 启动服务  
 ```bash
-nohup ./caddy run --config caddy.json >caddy.log 2<&1 &
+nohup caddy run --config /etc/caddy/caddy.json >/etc/caddy/caddy.log 2<&1 &
 ```
 - 开启 BBR 加速
 ```bash

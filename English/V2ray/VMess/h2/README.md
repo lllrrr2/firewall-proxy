@@ -14,7 +14,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 - Install tls-shunt-proxy 
 ```bash
 mkdir -p /etc/tsp /etc/v2ray /var/www/html
-wget https://github.com/charlieethan/firewall-proxy/releases/download/0.6.1/tsp && chmod +x tsp
+wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/0.6.1/tsp && chmod +x /usr/local/bin/tsp
 ```
 - Install Docker && V2ray
 ```bash
@@ -25,8 +25,7 @@ docker pull containrrr/watchtower
 - get HTML Tamplates    
 **I prepared 50 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~50.zip`**   
 ```bash
-cd /var/www/html && wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip
-unzip 1.zip && rm -rf 1.zip
+wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - modify config file 
 ```bash
@@ -98,7 +97,7 @@ vhosts:
 ```
 - Start Service  
 ```bash 
-cd && nohup ./tsp -config /etc/tsp/config.yaml >tsp.log 2<&1 &
+nohup tsp -config /etc/tsp/config.yaml >/etc/tsp/tsp.log 2<&1 &
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```

@@ -13,18 +13,17 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - get Caddy && Naiveproxy	
 ```bash
-wget https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
-chmod +x caddy && setcap cap_net_bind_service=+ep ./caddy
+wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
+chmod +x /usr/local/bin/caddy && setcap cap_net_bind_service=+ep /usr/local/bin/caddy
 ```
 - get HTML Tamplates	  
 **I prepared 50 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~50.zip`**		
 ```bash
-mkdir -p /var/www/html && cd /var/www/html
-wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip 1.zip 
+mkdir -p /var/www/html /etc/caddy && wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - modify config files
 ```bash
-cd && cat > caddy.json <<EOF
+cat > /etc/caddy/caddy.json <<EOF
 { 
   "admin": {"disabled": true},
   "logging": {
@@ -76,7 +75,7 @@ EOF
 ```
 - Start Service  
 ```bash
-nohup ./caddy run --config caddy.json >caddy.log 2<&1 &
+nohup caddy run --config /etc/caddy/caddy.json >/etc/caddy/caddy.log 2<&1 &
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
 ```bash

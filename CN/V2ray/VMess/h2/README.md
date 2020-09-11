@@ -13,7 +13,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 - 安装 tls-shunt-proxy 
 ```bash
 mkdir -p /etc/tsp /etc/v2ray /var/www/html
-wget https://github.com/charlieethan/firewall-proxy/releases/download/0.6.1/tsp && chmod +x tsp
+wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/0.6.1/tsp && chmod +x /usr/local/bin/tsp
 ```
 - 安装 Docker && V2ray
 ```bash
@@ -24,8 +24,7 @@ docker pull containrrr/watchtower
 - 下载网站模板    
 **我准备了50个伪装网站模板，这里只是一个示例，你可以将 `1.zip` 改为 `2~50.zip`**   
 ```bash
-cd /var/www/html && wget https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip
-unzip 1.zip && rm -rf 1.zip
+wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - 编辑 v2ray 配置 
 ```bash
@@ -97,7 +96,7 @@ vhosts:
 ```
 - 启动服务  
 ```bash 
-cd && nohup ./tsp -config /etc/tsp/config.yaml >tsp.log 2<&1 &
+nohup tsp -config /etc/tsp/config.yaml >/etc/tsp/tsp.log 2<&1 &
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
