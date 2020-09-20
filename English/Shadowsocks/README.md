@@ -107,10 +107,11 @@ sysctl -p
 Using this config method,**watchtower** can auto detect and update your software,You don't need to update manually any more
 # Client
 - Android 6.0+： [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-android/releases) | [Plugin Download](https://github.com/teddysun/v2ray-plugin-android/releases)    
-- Windows 7+: [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-windows/releases)      
-[Plugin Download](https://github.com/teddysun/v2ray-plugin/releases)    
-**You need to put Shadowsocks and v2ray plugin into one folder**		
+- Windows 7+: [Shadowsocks Download](https://github.com/shadowsocks/shadowsocks-windows/releases) | [Plugin Download](https://github.com/teddysun/v2ray-plugin/releases)    
+
+**You need to put Shadowsocks and v2ray plugin into one folder**    
+
 The config on Windows:
 
-`Plugin Program : v2ray-plugin`		
+`Plugin Program : v2ray-plugin`    
 `Plugin Options : tls;host=your_domain.com;path=/your_path`		
