@@ -112,7 +112,5 @@ Using this config method,**watchtower** can auto detect and update your software
 **You need to put Shadowsocks and v2ray plugin into one folder**		
 The config on Windows:
 
-![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/4.jpg)
-
 `Plugin Program : v2ray-plugin`		
 `Plugin Options : tls;host=your_domain.com;path=/your_path`		

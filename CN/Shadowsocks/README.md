@@ -110,7 +110,5 @@ sysctl -p
 - Windows系統 ：[点击下载](https://github.com/shadowsocks/shadowsocks-windows/releases) | [V2ray Plugin 插件下载](https://github.com/teddysun/v2ray-plugin/releases)    
 Windows系統 配置如下：  
 
-![2.jpg](https://github.com/charlieethan/firewall-proxy/blob/master/photos/4.jpg)
-
 `Plugin Program : v2ray-plugin`		
 `Plugin Options : tls;host=your_domain.com;path=/your_path`		
