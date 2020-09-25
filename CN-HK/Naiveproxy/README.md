@@ -7,22 +7,23 @@
 ## 內容
 - 安裝基礎工具  
 ```bash
-apt update && apt install -y libnss3 wget unzip
+apt update && apt install -y wget unzip
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
-- 安裝 Caddy && Naiveproxy  
+- 安裝 Docker && Caddy && Naiveproxy   
 ```bash
-wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/2.2.0/caddy
-chmod +x /usr/local/bin/caddy && setcap cap_net_bind_service=+ep /usr/local/bin/caddy
+wget -qO- get.docker.com | bash
+docker pull charlieethan/naiveproxy
+docker pull containrrr/watchtower
 ```
 - 下載網站範本    
 **我準備了50個偽裝網站範本，這裏只是一個示例，你可以將 `1.zip` 改為 `2~50.zip`**   
 ```bash
-mkdir -p /var/www/html /etc/caddy && wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
+mkdir -p /var/www/html /etc/naiveproxy && wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - 修改配置
 ```bash
-cat > /etc/caddy/caddy.json <<EOF
+cat > /etc/naiveproxy/config.json <<EOF
 { 
   "admin": {"disabled": true},
   "logging": {
@@ -74,7 +75,8 @@ EOF
 ```
 - 啟動服務  
 ```bash
-nohup caddy run --config /etc/caddy/caddy.json >/etc/caddy/caddy.log 2<&1 &
+docker run --network host --name naiveproxy -v /etc/naiveproxy:/etc/naiveproxy -v /var/www/html:/var/www/html --restart=always -d charlieethan/naiveproxy
+docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - 開啟 BBR 加速
 ```bash

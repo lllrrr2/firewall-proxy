@@ -11,20 +11,17 @@ Software : Debian 9/10 && Ubuntu 16/18/20
 apt update && apt install -y wget unzip vim    
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
-- Install tls-shunt-proxy 
-```bash
-mkdir -p /etc/tsp /etc/v2ray /var/www/html
-wget -P /usr/local/bin https://github.com/charlieethan/firewall-proxy/releases/download/0.6.1/tsp && chmod +x /usr/local/bin/tsp
-```
-- Install Docker && V2ray
+- Install Docker && V2ray && tls-shunt-proxy
 ```bash
 wget -qO- get.docker.com | bash
 docker pull teddysun/v2ray
+docker pull charlieethan/tls-shunt-proxy
 docker pull containrrr/watchtower
 ```
 - get HTML Tamplates    
 **I prepared 50 templates to use,this is an example to download one of them. You can modify `1.zip` to `2~50.zip`**   
 ```bash
+mkdir -p /var/www/html /etc/v2ray /etc/tls-shunt-proxy
 wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/download/2.1.1-t/1.zip && unzip /var/www/html/1.zip -d /var/www/html
 ```
 - modify config file 
@@ -68,7 +65,7 @@ vim /etc/v2ray/config.json
 ```
 - modify config files of tls-shunt-proxy
 ```bash
-vim /etc/tsp/config.yaml
+vim /etc/tls-shunt-proxy/config.yaml
 ```
 - copy your config  
 ```bash
@@ -97,8 +94,8 @@ vhosts:
 ```
 - Start Service  
 ```bash 
-nohup tsp -config /etc/tsp/config.yaml >/etc/tsp/tsp.log 2<&1 &
 docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name tls-shunt-proxy -v /etc/tls-shunt-proxy:/etc/tls-shunt-proxy -v /var/www/html:/var/www/html --restart=always -d charlieethan/tls-shunt-proxy
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
 - Start BBR Accelerate (A solotion to decrease network delay from Google) ：
