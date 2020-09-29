@@ -43,6 +43,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
+            "flow": "xtls-rprx-origin",
             "level": 0
           }
         ],
@@ -55,11 +56,11 @@ vim /etc/v2ray/config.json
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "tls",
+        "security": "xtls",
         "tcpSettings": {
         "type": "none"
         },
-        "tlsSettings": {
+        "xtlsSettings": {
           "serverName": "your_domain.com",  #改為你的功能變數名稱
           "allowInsecure": false,
           "alpn": [
