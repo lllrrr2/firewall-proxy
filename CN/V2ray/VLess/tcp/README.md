@@ -43,7 +43,7 @@ vim /etc/v2ray/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
-            "flow": "xtls-rprx-origin",
+            "flow": "xtls-rprx-direct",
             "level": 0
           }
         ],

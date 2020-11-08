@@ -44,7 +44,7 @@ vim /etc/v2ray/01/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  # modify UUID,you can generate one from https://www.uuidgenerator.net/
-            "flow": "xtls-rprx-origin",
+            "flow": "xtls-rprx-direct",
             "level": 0
           }
         ],
