@@ -44,7 +44,6 @@ vim /etc/v2ray/01/config.json
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  # modify UUID,you can generate one from https://www.uuidgenerator.net/
-            "flow": "xtls-rprx-direct",
             "level": 0
           }
         ],
@@ -62,11 +61,11 @@ vim /etc/v2ray/01/config.json
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "xtls",
+        "security": "tls",
         "tcpSettings": {
         "type": "none"
         },
-        "xtlsSettings": {
+        "tlsSettings": {
           "serverName": "your_domain.com",  #modify "your_domain.com" to your domain
           "allowInsecure": false,
           "alpn": [
