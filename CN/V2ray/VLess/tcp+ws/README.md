@@ -109,10 +109,6 @@ EOF
 ```
 - 修改 Nginx 配置 
 ```bash
-vim /etc/nginx/conf.d/default.conf
-```
-- 复制配置  
-```bash
 cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
     listen 127.0.0.1:80;
