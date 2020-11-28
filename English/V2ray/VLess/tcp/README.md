@@ -8,7 +8,7 @@ Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
-apt update && apt install -y socat wget git vim     
+apt update && apt install -y socat wget    
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script  
@@ -31,10 +31,7 @@ docker pull containrrr/watchtower
 ```
 - modify config file 
 ```bash
-vim /etc/v2ray/config.json
-```
-- copy your config  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -43,7 +40,7 @@ vim /etc/v2ray/config.json
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  # modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  // modify UUID,you can generate one from https://www.uuidgenerator.net/
             "level": 0
           }
         ],
@@ -61,7 +58,7 @@ vim /etc/v2ray/config.json
         "type": "none"
         },
         "tlsSettings": {
-          "serverName": "your_domain.com",  #modify "your_domain.com" to your domain
+          "serverName": "your_domain.com",  // modify "your_domain.com" to your domain
           "allowInsecure": false,
           "alpn": [
           "http/1.1"
@@ -83,18 +80,16 @@ vim /etc/v2ray/config.json
     }
   ]
 }
+EOF
 ```
 - modify config files of Nginx 
 ```bash
-vim /etc/nginx/conf.d/default.conf
-```
-- copy your config  
-```bash
+cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  #modify "your_domain.com" to your domain
+    server_name your_domain.com;  // modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;  #modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;  // modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
@@ -102,16 +97,12 @@ server {
     }
 }
 server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;  #modify to your server IP address
-    return 301 https://your_domain.com$request_uri;  #modify "your_domain.com" to your domain
-}
-server {
     listen 0.0.0.0:80;
     listen [::]:80;
     server_name _;
     return 301 https://$host$request_uri;
 }
+EOF
 ```
 - Start Service  
 ```bash 

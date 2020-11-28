@@ -2,6 +2,7 @@
 本项目旨在提供几个主流的代理软件搭建教程，让你获得自由的上网体验    
 所有搭建方式均采用 [Docker](https://hub.docker.com/) , 方便写入和升级     
 # 内容
+- [Xray](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Xray)		
 - [Brook](https://github.com/charlieethan/firewall-proxy/tree/master/CN/Brook)  		
 - [VLess](https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/VLess)			
 - [VMess](https://github.com/charlieethan/firewall-proxy/tree/master/CN/V2ray/VMess)		
@@ -19,6 +20,7 @@
 解决方法是：**更改伪装站的网站，直到找见可以反向代理的网站**
 
 # 推荐指数  
+⭐⭐⭐⭐⭐⭐⭐ Xray    
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐⭐ VLess	    	  
 ⭐⭐⭐⭐⭐ Trojan         
@@ -50,6 +52,7 @@
 - [Trojan-Qt5](https://github.com/Trojan-Qt5/Trojan-Qt5)     
 - [v2rayN](https://github.com/2dust/v2rayN)      
 - [v2rayNG](https://github.com/2dust/v2rayNG)     
+- [Xray](https://github.com/XTLS/Xray-core)		
 - [tls-shunt-proxy](https://github.com/liberal-boy/tls-shunt-proxy)		
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
 - [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)       
