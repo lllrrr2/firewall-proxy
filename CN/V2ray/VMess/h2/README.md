@@ -72,7 +72,7 @@ inboundbuffersize: 4
 outboundbuffersize: 32
 
 vhosts:
-  - name: your_domain.com  // 改为你的域名
+  - name: your_domain.com  # 改为你的域名
     tlsoffloading: true
     managedcert: true
     keytype: p256

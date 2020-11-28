@@ -116,9 +116,9 @@ nano /etc/nginx/conf.d/default.conf
 ```bash
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  // modify "your_domain.com" to your domain
+    server_name your_domain.com;  # modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;  // modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;  # modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 

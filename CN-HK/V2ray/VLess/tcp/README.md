@@ -89,9 +89,9 @@ nano /etc/nginx/conf.d/default.conf
 ```bash
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  // 改為你的功能變數名稱
+    server_name your_domain.com;  # 改為你的功能變數名稱
     location / {
-        proxy_pass https://proxy.com;  // 改為你想偽裝的網址
+        proxy_pass https://proxy.com;  # 改為你想偽裝的網址
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 

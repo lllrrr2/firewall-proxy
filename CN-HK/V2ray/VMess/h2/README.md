@@ -34,7 +34,7 @@ cat > /etc/v2ray/config.json <<EOF
       "settings": {
         "clients": [
           {
-            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", //更改id
+            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", // 更改id
             "alterId": 0 // 請不要修改，以啟用 VMess AEAD，抵抗主動檢測
           }
         ]

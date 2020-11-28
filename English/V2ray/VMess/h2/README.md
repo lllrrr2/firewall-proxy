@@ -73,7 +73,8 @@ inboundbuffersize: 4
 outboundbuffersize: 32
 
 vhosts:
-  - name: your_domain.com  // modify "your_domain.com" to your domain
+  - name: your_domain.com  
+    # modify "your_domain.com" to your domain
     tlsoffloading: true
     managedcert: true
     keytype: p256

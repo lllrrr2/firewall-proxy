@@ -76,16 +76,16 @@ server {
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
     
-    server_name  your_domain.com;    // modify "your_domain.com" to your domain
+    server_name  your_domain.com;    # modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;     // modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;     # modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       // modify the path you modified above 
+    location /your_path {       # modify the path you modified above 
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;

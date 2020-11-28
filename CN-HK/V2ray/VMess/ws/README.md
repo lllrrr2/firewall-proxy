@@ -75,16 +75,16 @@ server {
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
     
-    server_name  your_domain.com;    // 改為你的功能變數名稱
+    server_name  your_domain.com;    # 改為你的功能變數名稱
     location / {
-        proxy_pass https://proxy.com;     // 改為你想偽裝的網站
+        proxy_pass https://proxy.com;     # 改為你想偽裝的網站
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       // 更改路徑
+    location /your_path {       # 更改路徑
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;

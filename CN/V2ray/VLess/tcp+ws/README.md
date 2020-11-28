@@ -115,9 +115,9 @@ nano /etc/nginx/conf.d/default.conf
 ```
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  // 改为你的域名
+    server_name your_domain.com;  # 改为你的域名
     location / {
-        proxy_pass https://proxy.com;  // 改为你想伪装的网址
+        proxy_pass https://proxy.com;  # 改为你想伪装的网址
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
