@@ -7,7 +7,7 @@
 # 配置内容
 - 安装基础工具  
 ```bash
-apt update && apt install -y socat wget git vim
+apt update && apt install -y socat wget  
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装证书生成脚本  
@@ -30,10 +30,7 @@ docker pull containrrr/watchtower
 ```
 - 编辑 v2ray 配置 
 ```bash
-vim /etc/v2ray/config.json
-```
-- 复制配置  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -42,8 +39,8 @@ vim /etc/v2ray/config.json
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    #更改id
-            "alterId": 0  #请不要修改，以启用 VMess AEAD，抵抗主动检测
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    // 更改id
+            "alterId": 0
           }
         ]
       },
@@ -51,7 +48,7 @@ vim /etc/v2ray/config.json
         "network": "ws",
         "security": "none",
         "wsSettings": {
-        "path": "/your_path"   #更改路径
+        "path": "/your_path"   // 更改路径
         }
       }
     }
@@ -63,12 +60,13 @@ vim /etc/v2ray/config.json
     }
   ]
 }
+EOF
 ```
 - 修改 Nginx 配置 
 ```bash
-vim /etc/nginx/conf.d/default.conf
+nano /etc/nginx/conf.d/default.conf
 ```
-- 复制配置  
+- 复制配置
 ```bash
 server {
     listen 443 ssl http2;                                                       
@@ -76,17 +74,17 @@ server {
     ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
-   
-    server_name  your_domain.com;    #改为你的域名
+    
+    server_name  your_domain.com;    // 改为你的域名
     location / {
-        proxy_pass https://proxy.com;     #改为你想伪装的网址
+        proxy_pass https://proxy.com;     // 改为你想伪装的网站
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       #改为你在上面修改的路径
+    location /your_path {       // 更改路径
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;
@@ -97,16 +95,11 @@ server {
     }
 }
 server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;    #改为你服务器的 IP 地址
-    return 301 https://your_domain.com$request_uri;    #改为你的域名
-}
-server {
     listen 0.0.0.0:80;
     listen [::]:80;
     server_name _;
     return 301 https://$host$request_uri;
-  }
+}
 ```
 - 启动服务  
 ```bash 

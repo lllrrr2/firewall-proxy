@@ -7,7 +7,7 @@
 # 配置内容
 - 安装基础工具  
 ```bash
-apt update && apt install -y socat wget git vim     
+apt update && apt install -y socat wget    
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装证书生成脚本  
@@ -18,8 +18,8 @@ source ~/.bashrc
 - 安装证书  (**your_domain.com** 改为你的域名）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray/01 /etc/v2ray/02
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/01/server.pem --key-file /etc/v2ray/01/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/v2ray
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
 ```
 - 安装 Docker && Nginx && V2ray 
 ```bash
@@ -30,10 +30,7 @@ docker pull containrrr/watchtower
 ```
 - 编辑 v2ray 配置 
 ```bash
-vim /etc/v2ray/01/config.json
-```
-- 复制配置  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -42,7 +39,7 @@ vim /etc/v2ray/01/config.json
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  #更改id
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  // 更改id
             "level": 0
           }
         ],
@@ -52,7 +49,7 @@ vim /etc/v2ray/01/config.json
           "dest": 80
         },
         {
-          "path": "/your_path",  #更改路径
+          "path": "/your_path",  // 更改路径
           "dest": 1000,
           "xver": 1
         }
@@ -65,7 +62,7 @@ vim /etc/v2ray/01/config.json
         "type": "none"
         },
         "tlsSettings": {
-          "serverName": "your_domain.com",  #改为你的域名
+          "serverName": "your_domain.com",  // 改为你的域名
           "allowInsecure": false,
           "alpn": [
           "http/1.1"
@@ -78,31 +75,14 @@ vim /etc/v2ray/01/config.json
           ]
        }
      }
-   }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    }
-  ]
-}
-```
-- 编辑 v2ray 配置 
-```bash
-vim /etc/v2ray/02/config.json
-```
-- 复制配置  
-```bash
-{
-  "inbounds": [
-    {
+   },
+   {
       "port": 1000,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    #更改id，请与上面一个相同
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    // 更改id
             "level": 0
           }
         ],
@@ -113,7 +93,7 @@ vim /etc/v2ray/02/config.json
         "security": "none",
         "wsSettings": {
         "acceptProxyProtocol": true,
-        "path": "/your_path"   #更改路径，请与上面一个相同
+        "path": "/your_path"   // 更改路径
         }
       }
     }
@@ -125,28 +105,24 @@ vim /etc/v2ray/02/config.json
     }
   ]
 }
+EOF
 ```
 - 修改 Nginx 配置 
 ```bash
-vim /etc/nginx/conf.d/default.conf
+nano /etc/nginx/conf.d/default.conf
 ```
-- 复制配置  
-```bash
+- 复制配置
+```
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  #改为你的域名
+    server_name your_domain.com;  // 改为你的域名
     location / {
-        proxy_pass https://proxy.com;  #改为你想伪装的网址
+        proxy_pass https://proxy.com;  // 改为你想伪装的网址
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;  
     }
-}
-server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip; #改为你服务器的 IP 地址
-    return 301 https://your_domain.com$request_uri;  #改为你的域名
 }
 server {
     listen 0.0.0.0:80;
@@ -157,8 +133,7 @@ server {
 ```
 - 启动服务 
 ```bash
-docker run --network host --name tcp -v /etc/v2ray/01:/etc/v2ray --restart=always -d teddysun/v2ray
-docker run --network host --name ws -v /etc/v2ray/02:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```

@@ -2,8 +2,8 @@ English Version | [香港繁體](https://github.com/charlieethan/firewall-proxy/
 # About
 This project mission is to provide tutorials to let you across the firewall in your country, every method is still working in China,   
 But whether works in your country, you need to try it one by one     
-All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn something more about it    
 # Content
+- [Xray](https://github.com/charlieethan/firewall-proxy/tree/master/English/Xray)		
 - [Brook](https://github.com/charlieethan/firewall-proxy/tree/master/English/Brook)  	
 - [VLess](https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/VLess)		
 - [VMess](https://github.com/charlieethan/firewall-proxy/tree/master/English/V2ray/VMess)		
@@ -15,6 +15,7 @@ All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn som
 - You need have a domain to build the service. It's necessary, **If you do not have, please buy one**    
 - You need set a record on your Nameservice Provider to Point your Domain to your Server IP address before building the service	
 # Recommend index 
+⭐⭐⭐⭐⭐⭐⭐ Xray    
 ⭐⭐⭐⭐⭐⭐ Trojan-GO       
 ⭐⭐⭐⭐⭐⭐ VLess	    	  
 ⭐⭐⭐⭐⭐ Trojan         
@@ -41,6 +42,7 @@ All the project rely on [Dockerhub](https://hub.docker.com/) , you can learn som
 - [v2rayN](https://github.com/2dust/v2rayN)      
 - [v2rayNG](https://github.com/2dust/v2rayNG)     
 - [tls-shunt-proxy](https://github.com/liberal-boy/tls-shunt-proxy)		
+- [Xray](https://github.com/XTLS/Xray-core)		
 - [shadowsocks-android](https://github.com/shadowsocks/shadowsocks-android)     
 - [shadowsocks-windows](https://github.com/shadowsocks/shadowsocks-windows)      
 </details>

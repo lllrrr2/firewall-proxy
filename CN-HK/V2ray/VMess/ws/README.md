@@ -7,7 +7,7 @@
 # 配置內容
 - 安裝基礎工具  
 ```bash
-apt update && apt install -y socat wget git vim
+apt update && apt install -y socat wget  
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安裝證書生成腳本  
@@ -30,10 +30,7 @@ docker pull containrrr/watchtower
 ```
 - 編輯 v2ray 配置 
 ```bash
-vim /etc/v2ray/config.json
-```
-- 複製配置  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -42,8 +39,8 @@ vim /etc/v2ray/config.json
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    #更改id
-            "alterId": 0  #請不要修改，以啓用 VMess AEAD，抵抗主動檢測
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    // 更改id
+            "alterId": 0
           }
         ]
       },
@@ -51,7 +48,7 @@ vim /etc/v2ray/config.json
         "network": "ws",
         "security": "none",
         "wsSettings": {
-        "path": "/your_path"   #更改路徑
+        "path": "/your_path"   // 更改路徑
         }
       }
     }
@@ -63,12 +60,13 @@ vim /etc/v2ray/config.json
     }
   ]
 }
+EOF
 ```
 - 修改 Nginx 配置 
 ```bash
-vim /etc/nginx/conf.d/default.conf
+nano /etc/nginx/conf.d/default.conf
 ```
-- 複製配置  
+- 复制配置
 ```bash
 server {
     listen 443 ssl http2;                                                       
@@ -76,17 +74,17 @@ server {
     ssl_certificate_key   /etc/nginx/conf.d/server.key;
     ssl_protocols         TLSv1.2 TLSv1.3;                    
     ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
-   
-    server_name  your_domain.com;    #改為你的功能變數名稱
+    
+    server_name  your_domain.com;    // 改為你的功能變數名稱
     location / {
-        proxy_pass https://proxy.com;     #改為你想偽裝的網址
+        proxy_pass https://proxy.com;     // 改為你想偽裝的網站
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;
      }
 
-    location /your_path {       #改為你在上面修改的路徑
+    location /your_path {       // 更改路徑
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000;
         proxy_http_version 1.1;
@@ -97,16 +95,11 @@ server {
     }
 }
 server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;    #改為你伺服器的 IP 地址
-    return 301 https://your_domain.com$request_uri;    #改為你的功能變數名稱
-}
-server {
     listen 0.0.0.0:80;
     listen [::]:80;
     server_name _;
     return 301 https://$host$request_uri;
-  }
+}
 ```
 - 啟動服務  
 ```bash 

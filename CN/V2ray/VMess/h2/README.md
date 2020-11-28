@@ -7,7 +7,7 @@
 # 配置内容
 - 安装基础工具  
 ```bash
-apt update && apt install -y wget unzip vim    
+apt update && apt install -y wget unzip   
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安装 Docker && V2ray && tls-shunt-proxy
@@ -25,10 +25,7 @@ wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/do
 ```
 - 编辑 v2ray 配置 
 ```bash
-vim /etc/v2ray/config.json
-```
-- 复制配置 
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -37,8 +34,8 @@ vim /etc/v2ray/config.json
       "settings": {
         "clients": [
           {
-            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", #更改id
-            "alterId": 0  #请不要修改，以启用 VMess AEAD，抵抗主动检测
+            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", //更改id
+            "alterId": 0 // 请不要修改，以启用 VMess AEAD，抵抗主动检测
           }
         ]
       },
@@ -46,9 +43,9 @@ vim /etc/v2ray/config.json
         "network": "h2",
         "security": "none",
         "httpSettings": {
-          "path": "/your_path",  #更改路径
+          "path": "/your_path",  // 更改路径
           "host": [
-            "your_domain.com"  #改为你的域名
+            "your_domain.com"  // 改为你的域名
           ]
         }
       }
@@ -61,12 +58,13 @@ vim /etc/v2ray/config.json
     }
   ]
 }
+EOF
 ```
 - 修改 tls-shunt-proxy 配置
 ```bash
-vim /etc/tls-shunt-proxy/config.yaml
+nano /etc/tls-shunt-proxy/config.yaml
 ```
-- 复制配置 
+- 复制配置
 ```bash
 listen: 0.0.0.0:443
 redirecthttps: 0.0.0.0:80
@@ -74,7 +72,7 @@ inboundbuffersize: 4
 outboundbuffersize: 32
 
 vhosts:
-  - name: your_domain.com  #改为你的域名
+  - name: your_domain.com  // 改为你的域名
     tlsoffloading: true
     managedcert: true
     keytype: p256

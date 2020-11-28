@@ -8,7 +8,7 @@ Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
-apt update && apt install -y wget unzip vim    
+apt update && apt install -y wget unzip   
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - Install Docker && V2ray && tls-shunt-proxy
@@ -26,10 +26,7 @@ wget -P /var/www/html https://github.com/charlieethan/firewall-proxy/releases/do
 ```
 - modify config file 
 ```bash
-vim /etc/v2ray/config.json
-```
-- copy your config  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -38,7 +35,7 @@ vim /etc/v2ray/config.json
       "settings": {
         "clients": [
           {
-            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", # modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "id": "09c948f9-044d-4956-e056-89d39cb3db9d64", // modify UUID,you can generate one from https://www.uuidgenerator.net/
             "alterId": 0
           }
         ]
@@ -47,9 +44,9 @@ vim /etc/v2ray/config.json
         "network": "h2",
         "security": "none",
         "httpSettings": {
-          "path": "/your_path",  #modify path
+          "path": "/your_path",  // modify path
           "host": [
-            "your_domain.com"  #modify "your_domain.com" to your domain
+            "your_domain.com"  // modify "your_domain.com" to your domain
           ]
         }
       }
@@ -62,12 +59,13 @@ vim /etc/v2ray/config.json
     }
   ]
 }
+EOF
 ```
 - modify config files of tls-shunt-proxy
 ```bash
-vim /etc/tls-shunt-proxy/config.yaml
+nano /etc/tls-shunt-proxy/config.yaml
 ```
-- copy your config  
+- copy configuration files
 ```bash
 listen: 0.0.0.0:443
 redirecthttps: 0.0.0.0:80
@@ -75,7 +73,7 @@ inboundbuffersize: 4
 outboundbuffersize: 32
 
 vhosts:
-  - name: your_domain.com  #modify "your_domain.com" to your domain
+  - name: your_domain.com  // modify "your_domain.com" to your domain
     tlsoffloading: true
     managedcert: true
     keytype: p256

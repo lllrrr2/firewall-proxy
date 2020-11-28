@@ -7,7 +7,7 @@
 # 配置內容
 - 安裝基礎工具  
 ```bash
-apt update && apt install -y socat wget     
+apt update && apt install -y socat wget    
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - 安裝證書生成腳本  
@@ -18,19 +18,19 @@ source ~/.bashrc
 - 安裝證書  (**your_domain.com** 改為你的功能變數名稱）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/xray
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/xray/server.pem --key-file /etc/xray/server.key --ecc
 ```
 - 安裝 Docker && Nginx && V2ray 
 ```bash
 wget -qO- get.docker.com | bash
 docker pull nginx
-docker pull teddysun/v2ray
+docker pull ghcr.io/charlieethan/xray
 docker pull containrrr/watchtower
 ```
-- 編輯 v2ray 配置 
+- 編輯 Xray 配置 
 ```bash
-cat > /etc/v2ray/config.json <<EOF
+cat > /etc/xray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -40,6 +40,7 @@ cat > /etc/v2ray/config.json <<EOF
         "clients": [
           {
             "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  // 更改id
+            "flow": "xtls-rprx-direct",
             "level": 0
           }
         ],
@@ -47,16 +48,21 @@ cat > /etc/v2ray/config.json <<EOF
         "fallbacks":[
         {
           "dest": 80
+        },
+        {
+          "path": "/your_path",  // 更改路徑
+          "dest": 1000,
+          "xver": 1
         }
        ]
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "tls",
+        "security": "xtls",
         "tcpSettings": {
         "type": "none"
         },
-        "tlsSettings": {
+        "xtlsSettings": {
           "serverName": "your_domain.com",  // 改為你的功能變數名稱
           "allowInsecure": false,
           "alpn": [
@@ -64,13 +70,34 @@ cat > /etc/v2ray/config.json <<EOF
           ],
           "certificates": [
             {
-              "certificateFile": "/etc/v2ray/server.pem",
-              "keyFile": "/etc/v2ray/server.key"
+              "certificateFile": "/etc/xray/server.pem",
+              "keyFile": "/etc/xray/server.key"
             }
           ]
        }
      }
-   }
+   },
+   {
+      "port": 1000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    // 更改id
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+        "acceptProxyProtocol": true,
+        "path": "/your_path"   // 更改路徑
+        }
+      }
+    }
   ],
   "outbounds": [
     {
@@ -106,8 +133,8 @@ server {
 }
 ```
 - 啟動服務 
-```bash 
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+```bash
+docker run --network host --name xray -v /etc/xray:/etc/xray --restart=always -d ghcr.io/charlieethan/xray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
@@ -119,6 +146,9 @@ sysctl -p
 ```
 # 更新軟體
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
+
+# 說明
+在使用這種配置方式後，同一個 UUID 可以同時使用 TCP+TLS 和 Websocket 模式下的 VLess 協議。這意味著如果你的 IP 未被牆，你可以在客戶端使用 TCP+TLS 的模式最大程度跑滿伺服器的帶寬；而如果伺服器 IP 被牆，你不用更換任何伺服器端的配置檔，只需要開啟 CDN 並在客戶端直接使用 Websocket 模式連接即可，十分的方便快捷
 
 # 客戶端
 Android系統: [點擊下載](https://github.com/2dust/v2rayNG/releases)    

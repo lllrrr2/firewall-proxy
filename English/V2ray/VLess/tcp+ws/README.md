@@ -8,7 +8,7 @@ Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
-apt update && apt install -y socat wget git vim     
+apt update && apt install -y socat wget   
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script  
@@ -19,8 +19,8 @@ source ~/.bashrc
 - request SSL certificate (modify **your_domain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray/01 /etc/v2ray/02
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/01/server.pem --key-file /etc/v2ray/01/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/v2ray
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/v2ray/server.pem --key-file /etc/v2ray/server.key --ecc
 ```
 - Install Docker && Nginx && V2ray
 ```bash
@@ -31,10 +31,7 @@ docker pull containrrr/watchtower
 ```
 - modify config file 
 ```bash
-vim /etc/v2ray/01/config.json
-```
-- copy your config  
-```bash
+cat > /etc/v2ray/config.json <<EOF
 {
   "inbounds": [
     {
@@ -43,7 +40,7 @@ vim /etc/v2ray/01/config.json
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  # modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  // modify UUID,you can generate one from https://www.uuidgenerator.net/
             "level": 0
           }
         ],
@@ -53,7 +50,7 @@ vim /etc/v2ray/01/config.json
           "dest": 80
         },
         {
-          "path": "/your_path",  #modify path
+          "path": "/your_path",  // modify path
           "dest": 1000,
           "xver": 1
         }
@@ -66,7 +63,7 @@ vim /etc/v2ray/01/config.json
         "type": "none"
         },
         "tlsSettings": {
-          "serverName": "your_domain.com",  #modify "your_domain.com" to your domain
+          "serverName": "your_domain.com",  // modify "your_domain.com" to your domain
           "allowInsecure": false,
           "alpn": [
           "http/1.1"
@@ -79,31 +76,14 @@ vim /etc/v2ray/01/config.json
           ]
        }
      }
-   }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    }
-  ]
-}
-```
-- modify config file 
-```bash
-vim /etc/v2ray/02/config.json
-```
-- copy your config  
-```bash
-{
-  "inbounds": [
-    {
+   },
+   {
       "port": 1000,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    # modify UUID,keep it as same as below
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    // modify UUID,keep it as same as above
             "level": 0
           }
         ],
@@ -114,7 +94,7 @@ vim /etc/v2ray/02/config.json
         "security": "none",
         "wsSettings": {
         "acceptProxyProtocol": true,
-        "path": "/your_path"   #modify path
+        "path": "/your_path"   // modify path
         }
       }
     }
@@ -126,28 +106,24 @@ vim /etc/v2ray/02/config.json
     }
   ]
 }
+EOF
 ```
 - modify config files of Nginx 
 ```bash
-vim /etc/nginx/conf.d/default.conf
+nano /etc/nginx/conf.d/default.conf
 ```
-- copy your config  
+- copy configuration files
 ```bash
 server {
     listen 127.0.0.1:80;
-    server_name your_domain.com;  #modify "your_domain.com" to your domain
+    server_name your_domain.com;  // modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;  #modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;  // modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
         proxy_busy_buffers_size    128k;  
     }
-}
-server {
-    listen 127.0.0.1:80;
-    server_name ip.ip.ip.ip;  #modify to your server IP address
-    return 301 https://your_domain.com$request_uri;  #modify "your_domain.com" to your domain
 }
 server {
     listen 0.0.0.0:80;
@@ -158,8 +134,7 @@ server {
 ```
 - Start Service  
 ```bash 
-docker run --network host --name tcp -v /etc/v2ray/01:/etc/v2ray --restart=always -d teddysun/v2ray
-docker run --network host --name ws -v /etc/v2ray/02:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```

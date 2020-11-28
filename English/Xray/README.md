@@ -8,7 +8,7 @@ Software : Debian 9/10 && Ubuntu 16/18/20
 # Content
 - install basic tools
 ```bash
-apt update && apt install -y socat wget    
+apt update && apt install -y socat wget   
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
 - install script  
@@ -19,28 +19,72 @@ source ~/.bashrc
 - request SSL certificate (modify **your_domain.com** to your domain）
 ```bash
 acme.sh --issue --standalone -d your_domain.com -k ec-256
-mkdir -p /etc/nginx/conf.d /etc/v2ray
-acme.sh --installcert -d your_domain.com --fullchain-file /etc/nginx/conf.d/server.pem --key-file /etc/nginx/conf.d/server.key --ecc
+mkdir -p /etc/nginx/conf.d /etc/xray
+acme.sh --installcert -d your_domain.com --fullchain-file /etc/xray/server.pem --key-file /etc/xray/server.key --ecc
 ```
 - Install Docker && Nginx && V2ray
 ```bash
 wget -qO- get.docker.com | bash
 docker pull nginx
-docker pull teddysun/v2ray
+docker pull ghcr.io/charlieethan/xray
 docker pull containrrr/watchtower
 ```
 - modify config file 
 ```bash
-cat > /etc/v2ray/config.json <<EOF
+cat > /etc/xray/config.json <<EOF
 {
   "inbounds": [
     {
-      "port": 10000,
+      "port": 443,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",    // modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",  // modify UUID,you can generate one from https://www.uuidgenerator.net/
+            "flow": "xtls-rprx-direct",
+            "level": 0
+          }
+        ],
+        "decryption": "none",
+        "fallbacks":[
+        {
+          "dest": 80
+        },
+        {
+          "path": "/your_path",  // modify path
+          "dest": 1000,
+          "xver": 1
+        }
+       ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "xtls",
+        "tcpSettings": {
+        "type": "none"
+        },
+        "xtlsSettings": {
+          "serverName": "your_domain.com",  // modify "your_domain.com" to your domain
+          "allowInsecure": false,
+          "alpn": [
+          "http/1.1"
+          ],
+          "certificates": [
+            {
+              "certificateFile": "/etc/xray/server.pem",
+              "keyFile": "/etc/xray/server.key"
+            }
+          ]
+       }
+     }
+   },
+   {
+      "port": 1000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30866",    // modify UUID,keep it as same as above
             "level": 0
           }
         ],
@@ -50,7 +94,8 @@ cat > /etc/v2ray/config.json <<EOF
         "network": "ws",
         "security": "none",
         "wsSettings": {
-        "path": "/your_path"   #modify path
+        "acceptProxyProtocol": true,
+        "path": "/your_path"   // modify path
         }
       }
     }
@@ -71,29 +116,14 @@ nano /etc/nginx/conf.d/default.conf
 - copy configuration files
 ```bash
 server {
-    listen 443 ssl http2;                                                       
-    ssl_certificate       /etc/nginx/conf.d/server.pem;  
-    ssl_certificate_key   /etc/nginx/conf.d/server.key;
-    ssl_protocols         TLSv1.2 TLSv1.3;                    
-    ssl_ciphers           ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
-
-    server_name  your_domain.com;    // modify "your_domain.com" to your domain
+    listen 127.0.0.1:80;
+    server_name your_domain.com;  // modify "your_domain.com" to your domain
     location / {
-        proxy_pass https://proxy.com;     // modify to any website URL you want to disguise
+        proxy_pass https://proxy.com;  // modify to any website URL you want to disguise
         proxy_redirect     off;
         proxy_buffer_size          64k; 
         proxy_buffers              32 32k; 
-        proxy_busy_buffers_size    128k;
-     }
-
-    location /your_path {       // modify the path you modified above 
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:10000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $http_host;
-        proxy_read_timeout 300s;
+        proxy_busy_buffers_size    128k;  
     }
 }
 server {
@@ -105,7 +135,7 @@ server {
 ```
 - Start Service  
 ```bash 
-docker run --network host --name v2ray -v /etc/v2ray:/etc/v2ray --restart=always -d teddysun/v2ray
+docker run --network host --name xray -v /etc/xray:/etc/xray --restart=always -d ghcr.io/charlieethan/xray
 docker run --network host --name nginx -v /etc/nginx/conf.d:/etc/nginx/conf.d --restart=always -d nginx
 docker run --name watchtower -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped -d containrrr/watchtower --cleanup
 ```
@@ -121,6 +151,6 @@ Using this config method,**watchtower** can auto detect and update your software
 # Client
 Android 6.0+: [Download](https://github.com/2dust/v2rayNG/releases) 
 
-Windows && Linux && MacOS : [Qv2ray Download](https://github.com/Qv2ray/Qv2ray/releases)    
+Windows && Linux && MacOS : [Qxray Download](https://github.com/Qv2ray/Qv2ray/releases)    
 
-The Usage of Qv2ray (Chinese Only) : [Usage](https://qv2ray.net/getting-started/step2.html) 
+The Usage of Qxray (Chinese Only) : [Usage](https://qv2ray.net/getting-started/step2.html)  
