@@ -1,10 +1,10 @@
-//  准备工作
+## 准备工作
 你需要拥有一个自己的**域名**，并**已经将域名解析至你的服务器**   
-//  配置环境
+## 配置环境
 硬件 : 内存 ≧ 512M 储存 ≧ 5G | 64位系统      
 
 软件 : Debian 9/10 && Ubuntu 16/18/20
-//  配置内容
+## 配置内容
 - 安装基础工具  
 ```bash
 apt update && apt install -y socat wget
@@ -112,10 +112,10 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-//  更新软件
+##更新软件
 使用这种配置方式后，**watchtower**会自动监测并更新软件，你无需手动更新
 
-//  客户端
+## 客户端
 Android系统: [点击下载](https://github.com/2dust/v2rayNG/releases)    
 
 Windows && Linux && MacOS : [Qv2ray 下载](https://github.com/Qv2ray/Qv2ray/releases)   

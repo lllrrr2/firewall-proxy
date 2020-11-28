@@ -1,10 +1,10 @@
-//  準備工作
+## 準備工作
 你需要擁有一個自己的**功能變數名稱**，並**已經將功能變數名稱解析至你的伺服器**   
-//  配置環境
+## 配置環境
 硬體 : 記憶體 ≧ 512M 儲存 ≧ 5G | 64位系統      
 
 軟體 : Debian 9/10 && Ubuntu 16/18/20
-//  配置內容
+## 配置內容
 - 安裝基礎工具  
 ```bash
 apt update && apt install -y socat wget
@@ -112,10 +112,10 @@ bash -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
 bash -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
 sysctl -p
 ```
-//  更新軟體
+## 更新軟體
 使用這種配置方式後，**watchtower**會自動監測並更新軟體，你無需手動更新
 
-//  客戶端
+## 客戶端
 Android系統: [點擊下載](https://github.com/2dust/v2rayNG/releases)    
 
 Windows && Linux && MacOS : [Qv2ray 下載](https://github.com/Qv2ray/Qv2ray/releases)   
